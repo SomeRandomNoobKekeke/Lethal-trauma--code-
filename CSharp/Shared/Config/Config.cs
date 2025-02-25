@@ -29,7 +29,7 @@ namespace Lethaltrauma
 
   public class Config : IConfig
   {
-    public float WeaponDamage { get; set; } = 5.0f;
+    public float WeaponDamage { get; set; } = 3.0f;
     public bool OverrideHealthMult { get; set; } = true;
     public float HumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;

@@ -14,18 +14,18 @@ using LTDependencyInjection;
 namespace Lethaltrauma
 {
   [PatchClass]
-  public class ChangeWeaponDamage
+  public class WeaponDamage
   {
     public static void Initialize()
     {
       Mod.Harmony.Patch(
         original: typeof(Character).GetMethod("ApplyAttack", AccessTools.all),
-        prefix: new HarmonyMethod(typeof(ChangeWeaponDamage).GetMethod("Character_ApplyAttack_Prefix"))
+        prefix: new HarmonyMethod(typeof(WeaponDamage).GetMethod("Character_ApplyAttack_Prefix"))
       );
 
       Mod.Harmony.Patch(
         original: typeof(Explosion).GetMethod("DamageCharacters", AccessTools.all),
-        prefix: new HarmonyMethod(typeof(ChangeWeaponDamage).GetMethod("Explosion_DamageCharacters_Prefix"))
+        prefix: new HarmonyMethod(typeof(WeaponDamage).GetMethod("Explosion_DamageCharacters_Prefix"))
       );
     }
 

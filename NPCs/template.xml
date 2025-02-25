@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<npcsets>
+  <!--                         note                              -->
+  <!-- commonness here means desired difficulty to spawn itemset -->
+  <!--                                                           -->
+  <npcset identifier="security">
+    <npc identifier="securitynpccoalitionmelee" job="securityofficer" tags="securitynpc,dependsondifficulty" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol" aimspeed="0.8" aimaccuracy="0.75">
+      <ItemSet commonness="0">
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      </ItemSet>
+    </npc>
+    <npc identifier="securitynpccoalitionranged" job="securityofficer" tags="securitynpc,dependsondifficulty" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol" aimspeed="0.8" aimaccuracy="0.75">
+      <ItemSet commonness="0">
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      </ItemSet>
+    </npc>
+    <npc identifier="securitynpccoalitionspecial" job="securityofficer" tags="securitynpc,dependsondifficulty" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol" aimspeed="0.8" aimaccuracy="0.75">
+      <ItemSet commonness="0">
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      </ItemSet>
+    </npc>
+    <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc,dependsondifficulty" spawnpointtags="security" healthmultiplier="1" behavior="Patrol" aimspeed="0.8" aimaccuracy="0.75">
+      <ItemSet commonness="0">
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      </ItemSet>
+    </npc>
+    <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc,dependsondifficulty" spawnpointtags="security" healthmultiplier="1" behavior="Patrol" aimspeed="0.8" aimaccuracy="0.75">
+      <ItemSet commonness="0">
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      </ItemSet>
+    </npc>
+    <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc,dependsondifficulty" spawnpointtags="security" healthmultiplier="1" behavior="Patrol" aimspeed="0.8" aimaccuracy="0.75">
+      <ItemSet commonness="0">
+        <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      </ItemSet>
+    </npc>
+  </npcset>
+</npcsets>

@@ -20,15 +20,12 @@ namespace Lethaltrauma
     {
       Mod.Harmony.Patch(
         original: typeof(HumanPrefab).GetMethod("GiveItems", AccessTools.all),
-        postfix: new HarmonyMethod(typeof(PressureKillDelay).GetMethod("Character_Constructor_Postfix"))
+        prefix: new HarmonyMethod(typeof(GiveWeapons).GetMethod("HumanPrefab_GiveItems_Replace"))
       );
     }
 
 
-
     [Dependency] public static ConfigProxy Config { get; set; }
-
-
 
 
     public static bool HumanPrefab_GiveItems_Replace(HumanPrefab __instance, ref bool __result, Character character, Submarine submarine, WayPoint spawnPoint, Rand.RandSync randSync = Rand.RandSync.Unsynced, bool createNetworkEvents = true)
@@ -36,7 +33,34 @@ namespace Lethaltrauma
       HumanPrefab _ = __instance;
 
       if (_.ItemSets == null || !_.ItemSets.Any()) { __result = false; return false; }
-      var spawnItems = ToolBox.SelectWeightedRandom(_.ItemSets, it => it.commonness, randSync).element;
+
+      ContentXElement spawnItems;
+
+      if (_.Tags.Contains("dependsondifficulty"))
+      {
+        float difficulty = GameMain.GameSession.LevelData.Difficulty;
+
+        double minDistance = 1000;
+        int minIndex = -1;
+
+        for (int i = 0; i < _.ItemSets.Count; i++)
+        {
+          double distance = Math.Abs(difficulty - _.ItemSets[i].commonness);
+
+          if (distance < minDistance)
+          {
+            minDistance = distance;
+            minIndex = i;
+          }
+        }
+
+        spawnItems = _.ItemSets[minIndex].element;
+      }
+      else
+      {
+        spawnItems = ToolBox.SelectWeightedRandom(_.ItemSets, it => it.commonness, randSync).element;
+      }
+
       if (spawnItems != null)
       {
         foreach (ContentXElement itemElement in spawnItems.GetChildElements("item"))
@@ -48,6 +72,7 @@ namespace Lethaltrauma
           }
         }
       }
+
       __result = true; return false;
     }
 

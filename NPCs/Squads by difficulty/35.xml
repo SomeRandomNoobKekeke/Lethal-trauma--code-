@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<npcset>
+  <!-- Coalition -->
+  <npc identifier="securitynpccoalitionmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
+    <ItemSet commonness="35">
+      <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      <Item identifier="commonerclothes5" equip="true" />
+      <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="stunbaton">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="shotgun" equip="false">
+        <Item identifier="shotgunshell" amount="6" />
+        <Item identifier="flashlight">
+          <Item identifier="batterycell" />
+        </Item>
+      </Item>
+      <Item identifier="shotgunshell" amount="12" />
+      <Item identifier="divingknifehardened" />
+    </ItemSet>
+  </npc>
+  <npc identifier="securitynpccoalitionranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
+    <ItemSet commonness="35">
+      <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      <Item identifier="commonerclothes5" equip="true" />
+      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="stungun">
+        <Item identifier="stungundart" amount="2" />
+      </Item>
+      <Item identifier="stungundart" amount="8" />
+      <Item identifier="smg" equip="false">
+        <Item identifier="smgmagazine" />
+        <Item identifier="flashlight">
+          <Item identifier="batterycell" />
+        </Item>
+      </Item>
+      <Item identifier="smgmagazine" amount="4" />
+      <Item identifier="divingknifehardened" />
+    </ItemSet>
+  </npc>
+  <npc identifier="securitynpccoalitionspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
+    <ItemSet commonness="35">
+      <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      <Item identifier="commonerclothes5" equip="true" />
+      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="stungun">
+        <Item identifier="stungundart" amount="2" />
+      </Item>
+      <Item identifier="stungundart" amount="8" />
+      <Item identifier="rifle">
+        <Item identifier="riflebullet" amount="6" />
+        <Item identifier="40mmchemgrenade" />
+        <Item identifier="flashlight">
+          <Item identifier="batterycell" />
+        </Item>
+      </Item>
+      <Item identifier="40mmchemgrenade" />
+      <Item identifier="riflebullet" amount="12" />
+      <Item identifier="divingknifehardened" />
+    </ItemSet>
+  </npc>
+  <!-- Separatists -->
+  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+    <ItemSet commonness="35">
+      <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      <Item identifier="pirateclotheshard" equip="true" />
+      <Item identifier="piratebodyarmor" equip="true" />
+      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="stunbaton">
+        <Item identifier="batterycell" />
+      </Item>
+      <Item identifier="shotgun" equip="false">
+        <Item identifier="shotgunshell" amount="6" />
+        <Item identifier="flashlight">
+          <Item identifier="batterycell" />
+        </Item>
+      </Item>
+      <Item identifier="shotgunshell" amount="12" />
+      <Item identifier="divingknifehardened" />
+    </ItemSet>
+  </npc>
+  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+    <ItemSet commonness="35">
+      <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      <Item identifier="pirateclotheshard" equip="true" />
+      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="stungun">
+        <Item identifier="stungundart" amount="2" />
+      </Item>
+      <Item identifier="stungundart" amount="8" />
+      <Item identifier="smg" equip="false">
+        <Item identifier="smgmagazine" />
+        <Item identifier="flashlight">
+          <Item identifier="batterycell" />
+        </Item>
+      </Item>
+      <Item identifier="smgmagazine" amount="4" />
+      <Item identifier="divingknifehardened" />
+    </ItemSet>
+  </npc>
+  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+    <ItemSet commonness="35">
+      <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
+      <Item identifier="pirateclotheshard" equip="true" />
+      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="stungun">
+        <Item identifier="stungundart" amount="2" />
+      </Item>
+      <Item identifier="stungundart" amount="8" />
+      <Item identifier="rifle">
+        <Item identifier="riflebullet" amount="6" />
+        <Item identifier="40mmchemgrenade" />
+        <Item identifier="flashlight">
+          <Item identifier="batterycell" />
+        </Item>
+      </Item>
+      <Item identifier="40mmchemgrenade" />
+      <Item identifier="riflebullet" amount="12" />
+      <Item identifier="divingknifehardened" />
+    </ItemSet>
+  </npc>
+</npcset>
