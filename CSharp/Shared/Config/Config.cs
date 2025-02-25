@@ -24,15 +24,17 @@ namespace Lethaltrauma
     public float HumanHealth { get; set; }
     public float MonsterHealth { get; set; }
     public bool NoReputationLossInMask { get; set; }
+    public float PressureKillDelay { get; set; }
   }
 
   public class Config : IConfig
   {
-    public float WeaponDamage { get; set; } = 3.0f;
+    public float WeaponDamage { get; set; } = 5.0f;
     public bool OverrideHealthMult { get; set; } = true;
     public float HumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;
     public bool NoReputationLossInMask { get; set; } = true;
+    public float PressureKillDelay { get; set; } = 1.0f;
   }
 
   [Singleton]
@@ -45,7 +47,7 @@ namespace Lethaltrauma
     public event Action<float> HumanHealthChanged;
     public event Action<float> MonsterHealthChanged;
     public event Action<bool> NoReputationLossInMaskChanged;
-
+    public event Action<float> PressureKillDelayChanged;
 
 
 
@@ -94,6 +96,16 @@ namespace Lethaltrauma
       {
         Container.Config.NoReputationLossInMask = value;
         NoReputationLossInMaskChanged?.Invoke(value);
+      }
+    }
+
+    public float PressureKillDelay
+    {
+      get => Container.Config.PressureKillDelay;
+      set
+      {
+        Container.Config.PressureKillDelay = value;
+        PressureKillDelayChanged?.Invoke(value);
       }
     }
   }
