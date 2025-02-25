@@ -30,6 +30,7 @@ namespace Lethaltrauma
     }
 
     [Dependency] public static ConfigProxy Config { get; set; }
+    [Dependency] public static Logger Logger { get; set; }
 
     public static bool Character_ApplyAttack_Prefix(Character __instance, ref AttackResult __result, Character attacker, Vector2 worldPosition, Attack attack, float deltaTime, Vector2 impulseDirection, bool playSound = false, Limb targetLimb = null, float penetration = 0f)
     {
@@ -37,6 +38,7 @@ namespace Lethaltrauma
 
       bool fromWeapon =
         attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<RangedWeapon>() != null ||
+        attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<Turret>() != null ||
         attack.SourceItem?.GetComponent<RangedWeapon>() != null ||
         attack.SourceItem?.GetComponent<MeleeWeapon>() != null;
 
