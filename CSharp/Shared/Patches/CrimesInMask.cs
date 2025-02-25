@@ -58,10 +58,10 @@ namespace Lethaltrauma
       const float ArrestThreshold = 20.0f;
       const float KillThreshold = 50.0f;
 
-      if (character == null || damageAmount <= 0.0f) { return; }
-      if (structure?.Submarine == null || !structure.Submarine.Info.IsOutpost || character.TeamID == structure.Submarine.TeamID) { return; }
+      if (character == null || damageAmount <= 0.0f) { return false; }
+      if (structure?.Submarine == null || !structure.Submarine.Info.IsOutpost || character.TeamID == structure.Submarine.TeamID) { return false; }
       //structure not indestructible = something that's "meant" to be destroyed, like an ice wall in mines
-      if (!structure.Prefab.IndestructibleInOutposts) { return; }
+      if (!structure.Prefab.IndestructibleInOutposts) { return false; }
 
       bool someoneSpoke = false;
       float maxAccumulatedDamage = 0.0f;
@@ -84,13 +84,16 @@ namespace Lethaltrauma
 
         if (GameMain.GameSession?.Campaign?.Map?.CurrentLocation?.Reputation != null && character.IsPlayer)
         {
-          var reputationLoss = damageAmount * Reputation.ReputationLossPerWallDamage;
-          GameMain.GameSession.Campaign.Map.CurrentLocation.Reputation.AddReputation(-reputationLoss, Reputation.MaxReputationLossFromWallDamage);
+          if (Config == null || !Config.NoReputationLossInMask || !character.HideFace)
+          {
+            var reputationLoss = damageAmount * Reputation.ReputationLossPerWallDamage;
+            GameMain.GameSession.Campaign.Map.CurrentLocation.Reputation.AddReputation(-reputationLoss, Reputation.MaxReputationLossFromWallDamage);
+          }
         }
 
         if (!character.IsCriminal)
         {
-          if (accumulatedDamage <= WarningThreshold) { return; }
+          if (accumulatedDamage <= WarningThreshold) { return false; }
 
           if (accumulatedDamage > WarningThreshold && prevAccumulatedDamage <= WarningThreshold &&
               !someoneSpoke && !character.IsIncapacitated && character.Stun <= 0.0f)
@@ -126,7 +129,7 @@ namespace Lethaltrauma
               if (!TriggerSecurity(security.AIController as HumanAIController, combatMode))
               {
                 // Only alert one guard at a time
-                return;
+                return false;
               }
             }
           }
@@ -138,7 +141,7 @@ namespace Lethaltrauma
         if (humanAI == null) { return false; }
         if (!humanAI.Character.IsSecurity) { return false; }
         if (humanAI.ObjectiveManager.IsCurrentObjective<AIObjectiveCombat>()) { return false; }
-        humanAI.AddCombatObjective(combatMode, character, delay: GetReactionTime(),
+        humanAI.AddCombatObjective(combatMode, character, delay: HumanAIController.GetReactionTime(),
             onCompleted: () =>
             {
               //if the target is arrested successfully, reset the damage accumulator
@@ -152,6 +155,8 @@ namespace Lethaltrauma
             });
         return true;
       }
+
+      return false;
     }
 
 
