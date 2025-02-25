@@ -23,6 +23,7 @@ namespace Lethaltrauma
     public bool OverrideHealthMult { get; set; }
     public float HumanHealth { get; set; }
     public float MonsterHealth { get; set; }
+    public bool NoReputationLossInMask { get; set; }
   }
 
   public class Config : IConfig
@@ -31,6 +32,7 @@ namespace Lethaltrauma
     public bool OverrideHealthMult { get; set; } = true;
     public float HumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;
+    public bool NoReputationLossInMask { get; set; } = true;
   }
 
   [Singleton]
@@ -42,6 +44,9 @@ namespace Lethaltrauma
     public event Action<bool> OverrideHumanHealthMultChanged;
     public event Action<float> HumanHealthChanged;
     public event Action<float> MonsterHealthChanged;
+    public event Action<bool> NoReputationLossInMaskChanged;
+
+
 
 
     public float WeaponDamage
@@ -79,6 +84,16 @@ namespace Lethaltrauma
       {
         Container.Config.MonsterHealth = value;
         MonsterHealthChanged?.Invoke(value);
+      }
+    }
+
+    public bool NoReputationLossInMask
+    {
+      get => Container.Config.NoReputationLossInMask;
+      set
+      {
+        Container.Config.NoReputationLossInMask = value;
+        NoReputationLossInMaskChanged?.Invoke(value);
       }
     }
   }
