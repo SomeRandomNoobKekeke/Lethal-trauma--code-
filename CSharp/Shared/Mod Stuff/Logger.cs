@@ -1,0 +1,51 @@
+using System;
+using System.Reflection;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using System.IO;
+
+using Barotrauma;
+using HarmonyLib;
+using Microsoft.Xna.Framework;
+
+using System.Runtime.CompilerServices;
+
+namespace Lethaltrauma
+{
+  public class Logger
+  {
+    public Debugger Debugger => Mod.Instance?.Debugger;
+
+    public Color BaseColor { get; set; } = Color.Cyan;
+
+    public string WrapInColor(object msg, string color) => $"‖color:{color}‖{msg}‖end‖";
+    // public string GetCallerFolderPath([CallerFilePath] string source = "") => Path.GetDirectoryName(source);
+    public void Log(object msg, Color? color = null)
+    {
+      color ??= BaseColor;
+      LuaCsLogger.LogMessage($"{msg ?? "null"}", color * 0.8f, color);
+    }
+
+    public void Warning(object msg) => Log(msg, Color.Yellow);
+
+    public void Info(object msg, [CallerFilePath] string source = "", [CallerLineNumber] int lineNumber = 0)
+    {
+      if (Debugger?.Debug == true)
+      {
+        Log(msg, Color.Cyan);
+      }
+    }
+
+    public void Error(object msg, [CallerFilePath] string source = "", [CallerLineNumber] int lineNumber = 0)
+    {
+      if (Debugger?.Debug == true)
+      {
+        var fi = new FileInfo(source);
+
+        Log($"{fi.Directory.Name}/{fi.Name}:{lineNumber}", Color.Orange * 0.5f);
+        Log(msg, Color.Orange);
+      }
+    }
+  }
+}
