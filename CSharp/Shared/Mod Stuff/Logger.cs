@@ -8,14 +8,15 @@ using System.IO;
 using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-
+using LTDependencyInjection;
 using System.Runtime.CompilerServices;
 
 namespace Lethaltrauma
 {
+  [Singleton]
   public class Logger
   {
-    public Debugger Debugger => Mod.Instance?.Debugger;
+    [LTDependencyInjection.Dependency] public Debugger Debugger { get; set; }
 
     public Color BaseColor { get; set; } = Color.Cyan;
 

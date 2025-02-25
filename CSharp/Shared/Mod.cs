@@ -8,7 +8,7 @@ using System.Linq;
 using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-
+using LTDependencyInjection;
 
 
 namespace Lethaltrauma
@@ -19,17 +19,25 @@ namespace Lethaltrauma
     public static string Name = "Lethaltrauma";
     public static Harmony Harmony = new Harmony("lethaltrauma");
 
-    public static Mod Instance { get; set; }
+    [EntryPoint] public static Mod Instance { get; set; }
+    [Singleton] public Debugger Debugger { get; set; }
+    [Singleton] public Logger Logger { get; set; }
 
-    public Debugger Debugger { get; set; } = new Debugger();
-    public Logger Logger { get; set; } = new Logger();
+    public ServiceCollection Services = new ServiceCollection() { Debug = true };
 
-
+    public void SetupServices()
+    {
+      Services.Map<IConfigContainer, ConfigManager>();
+    }
 
     public void Initialize()
     {
       Instance = this;
       AddCommands();
+
+      SetupServices();
+      Services.InjectEverything();
+      Services.PrintState();
 
       Debugger.Debug = true;
       PatchAll();

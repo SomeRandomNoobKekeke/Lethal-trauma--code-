@@ -11,7 +11,7 @@ using System.IO;
 using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-
+using LTDependencyInjection;
 
 namespace Lethaltrauma
 {
@@ -26,9 +26,11 @@ namespace Lethaltrauma
     None = 0,
   }
 
+
+  [Singleton]
   public class Debugger
   {
-    public Logger Logger => Mod.Instance?.Logger;
+    [Dependency] public Logger Logger { get; set; }
     public bool Debug { get; set; }
     public DebugLevel CurrentLevel { get; set; }
     public DebugAdditionalPrint AlsoPrint { get; set; }
