@@ -43,6 +43,7 @@ namespace LTCrabUI
     };
   }
 
+  //TODO all this stuff is too specific, there should be more flexible way
   public static class CUIPrefab
   {
     public static CUIFrame ListFrame()
@@ -52,29 +53,70 @@ namespace LTCrabUI
       return frame;
     }
 
-    public static CUIComponent TextAndSlider(string name, string command, FloatRange? range = null)
+
+    public static CUIComponent WrapInGroup(string name, CUIComponent content)
+    {
+      CUIVerticalList group = new CUIVerticalList() { FitContent = new CUIBool2(false, true), };
+      group["header"] = new CUITextBlock(name)
+      {
+        TextScale = 1.0f,
+        TextAlign = CUIAnchor.Center,
+      };
+      group["content"] = content;
+      return group;
+    }
+
+    public static CUIComponent Group(string name)
+    {
+      CUIVerticalList group = new CUIVerticalList()
+      {
+        FitContent = new CUIBool2(false, true),
+      };
+
+      group["header"] = new CUITextBlock(name)
+      {
+        TextScale = 1.0f,
+        TextAlign = CUIAnchor.Center,
+      };
+
+      group["content"] = new CUIVerticalList()
+      {
+        FitContent = new CUIBool2(false, true),
+      };
+
+      return group;
+    }
+
+    public static CUIComponent TextAndSliderWithLabel(string name, string command, FloatRange? range = null)
     {
       CUIComponent wrapper = new CUIVerticalList()
       {
         FitContent = new CUIBool2(false, true),
         Style = CUIStylePrefab.Main,
+      };
+
+      wrapper["label"] = new CUITextBlock(name);
+      wrapper["controls"] = TextAndSlider(command, range);
+
+      return wrapper;
+    }
+
+    public static CUIComponent TextAndSlider(string command, FloatRange? range = null)
+    {
+      CUIHorizontalList controls = new CUIHorizontalList()
+      {
+        FitContent = new CUIBool2(false, true),
         RetranslateCommands = true,
         ReflectCommands = true,
       };
 
-      wrapper["label"] = new CUITextBlock(name);
-      wrapper["controls"] = new CUIHorizontalList()
-      {
-        FitContent = new CUIBool2(false, true),
-      };
-
-      wrapper["controls"]["text"] = new CUITextInput()
+      controls["text"] = new CUITextInput()
       {
         Absolute = new CUINullRect(w: 20.0f),
         Consumes = command,
         Command = command,
       };
-      wrapper["controls"]["slider"] = new CUISlider()
+      controls["slider"] = new CUISlider()
       {
         Relative = new CUINullRect(h: 1.0f),
         FillEmptySpace = new CUIBool2(true, false),
@@ -83,7 +125,7 @@ namespace LTCrabUI
         Range = range ?? new FloatRange(0, 1),
       };
 
-      return wrapper;
+      return controls;
     }
 
     public static CUIFrame ListFrameWithHeader()

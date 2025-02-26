@@ -19,7 +19,13 @@ namespace Lethaltrauma
 
   public interface IConfig
   {
-    public float WeaponDamage { get; set; }
+    public float RangedWeaponDamage { get; set; }
+    public float MeleeWeaponDamage { get; set; }
+    public float ExplosionDamage { get; set; }
+    public float TurretDamage { get; set; }
+    public float MonsterAttackDamage { get; set; }
+
+
     public bool OverrideHealthMult { get; set; }
     public float HumanHealth { get; set; }
     public float MonsterHealth { get; set; }
@@ -29,7 +35,11 @@ namespace Lethaltrauma
 
   public class Config : IConfig
   {
-    public float WeaponDamage { get; set; } = 3.0f;
+    public float RangedWeaponDamage { get; set; } = 1.0f;
+    public float MeleeWeaponDamage { get; set; } = 1.0f;
+    public float ExplosionDamage { get; set; } = 1.0f;
+    public float TurretDamage { get; set; } = 1.0f;
+    public float MonsterAttackDamage { get; set; } = 1.0f;
     public bool OverrideHealthMult { get; set; } = true;
     public float HumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;
@@ -44,7 +54,7 @@ namespace Lethaltrauma
     [Dependency] public Logger Logger { get; set; }
     [Dependency] public Parser Parser { get; set; }
 
-    public event Action<float> WeaponDamageChanged;
+
     public event Action<bool> OverrideHumanHealthMultChanged;
     public event Action<float> HumanHealthChanged;
     public event Action<float> MonsterHealthChanged;
@@ -75,16 +85,53 @@ namespace Lethaltrauma
 
 
 
-    public float WeaponDamage
+    public float RangedWeaponDamage
     {
-      get => Container.Config.WeaponDamage;
+      get => Container.Config.RangedWeaponDamage;
       set
       {
-        Container.Config.WeaponDamage = value;
-        WeaponDamageChanged?.Invoke(value);
+        Container.Config.RangedWeaponDamage = value;
         PropChanged?.Invoke();
       }
     }
+    public float MeleeWeaponDamage
+    {
+      get => Container.Config.MeleeWeaponDamage;
+      set
+      {
+        Container.Config.MeleeWeaponDamage = value;
+        PropChanged?.Invoke();
+      }
+    }
+    public float ExplosionDamage
+    {
+      get => Container.Config.ExplosionDamage;
+      set
+      {
+        Container.Config.ExplosionDamage = value;
+        PropChanged?.Invoke();
+      }
+    }
+    public float TurretDamage
+    {
+      get => Container.Config.TurretDamage;
+      set
+      {
+        Container.Config.TurretDamage = value;
+        PropChanged?.Invoke();
+      }
+    }
+    public float MonsterAttackDamage
+    {
+      get => Container.Config.MonsterAttackDamage;
+      set
+      {
+        Container.Config.MonsterAttackDamage = value;
+        PropChanged?.Invoke();
+      }
+    }
+
+
     public bool OverrideHealthMult
     {
       get => Container.Config.OverrideHealthMult;

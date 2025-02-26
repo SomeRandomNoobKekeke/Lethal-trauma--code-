@@ -36,15 +36,19 @@ namespace Lethaltrauma
     {
       if (Config == null) return true;
 
-      bool fromWeapon =
-        attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<RangedWeapon>() != null ||
-        attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<Turret>() != null ||
-        attack.SourceItem?.GetComponent<RangedWeapon>() != null ||
-        attack.SourceItem?.GetComponent<MeleeWeapon>() != null;
+      bool fromTurret = attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<Turret>() != null;
+      bool fromRangedWeapon = attack.SourceItem?.GetComponent<RangedWeapon>() != null || attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<RangedWeapon>() != null;
+      bool fromMeleeWeapon = attack.SourceItem?.GetComponent<MeleeWeapon>() != null;
 
-      if (fromWeapon)
+
+      if (fromTurret) attack.DamageMultiplier = Config.TurretDamage;
+      if (fromRangedWeapon) attack.DamageMultiplier = Config.RangedWeaponDamage;
+      if (fromMeleeWeapon) attack.DamageMultiplier = Config.MeleeWeaponDamage;
+
+      //TODO there's probably more cases
+      if (!fromTurret && !fromRangedWeapon && !fromMeleeWeapon)
       {
-        attack.DamageMultiplier = Config.WeaponDamage;
+        attack.DamageMultiplier = Config.MonsterAttackDamage;
       }
 
       return true;
@@ -53,7 +57,7 @@ namespace Lethaltrauma
     public static bool Explosion_DamageCharacters_Prefix(Explosion __instance, Vector2 worldPosition, Attack attack, float force, Entity damageSource, Character attacker)
     {
       if (Config == null) return true;
-      attack.DamageMultiplier = Config.WeaponDamage;
+      attack.DamageMultiplier = Config.ExplosionDamage;
 
       return true;
     }

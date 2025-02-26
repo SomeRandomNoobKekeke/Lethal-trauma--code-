@@ -20,7 +20,7 @@ namespace Lethaltrauma
 
     public void SetupCUI()
     {
-      CUIPalette.LoadSet(Path.Combine(CUIPalette.PaletteSetsPath, "Red.xml"));
+      //CUIPalette.LoadSet(Path.Combine(CUIPalette.PaletteSetsPath, "Red.xml"));
     }
     public void InitializeProjSpecific()
     {

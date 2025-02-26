@@ -2,19 +2,52 @@
 <SettingsUI Absolute="[0,0,300,300]" Anchor="[1,0.5]" IgnoreEvents="true" Visible="false">
   <CUIVerticalList AKA="layout" IgnoreEvents="true" Relative="[0,0,1,1]" Visible="false">
     <CUITextBlock AKA="header" BackgroundColor="127,0,0,255" Border="[127,0,0,255,1]" IgnoreEvents="true" Style="{ BackgroundColor : CUIPalette.Frame.Border, Border : CUIPalette.Frame.Border, TextColor : CUIPalette.Frame.Text }" Text="Lethaltrauma Settings" TextAlign="[0.5,0.5]" TextColor="255,229,229,255" TextScale="1" Visible="false" />
-    <CUIVerticalList AKA="content" BackgroundColor="20,0,3,255" Border="[40,0,6,255,1]" ConsumeDragAndDrop="true" FillEmptySpace="[False,True]" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Scrollable="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
-      <CUIVerticalList AKA="WeaponDamage" BackgroundColor="20,0,3,255" Border="[40,0,6,255,1]" FitContent="[False,True]" IgnoreEvents="true" Palette="Secondary" ReflectCommands="true" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" RetranslateCommands="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
-        <CUITextBlock AKA="label" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Text="Weapon Damage" TextColor="244,204,210,255" Visible="false" />
-        <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Visible="false">
-          <CUITextInput AKA="text" Absolute="[,,20,]" BackgroundColor="40,0,6,255" Border="[60,0,9,255,1]" Command="WeaponDamage" Consumes="WeaponDamage" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Visible="false" />
-          <CUISlider AKA="slider" Command="WeaponDamage" Consumes="WeaponDamage" FillEmptySpace="[True,False]" IgnoreEvents="true" Palette="Secondary" Range="[0,5]" Relative="[,,,1]" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Visible="false" />
-        </CUIHorizontalList>
+    <CUIVerticalList AKA="content" BackgroundColor="25,0,0,255" Border="[51,0,0,255,1]" ConsumeDragAndDrop="true" FillEmptySpace="[False,True]" IgnoreEvents="true" ScrollSpeed="0.5" Scrollable="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
+      <CUIVerticalList AKA="damage" FitContent="[False,True]" IgnoreEvents="true" Visible="false">
+        <CUITextBlock AKA="header" IgnoreEvents="true" Text="Damage" TextAlign="[0.5,0.5]" TextScale="1" Visible="false" />
+        <CUIVerticalList AKA="content" FitContent="[False,True]" IgnoreEvents="true" Visible="false">
+          <CUIVerticalList BackgroundColor="25,0,0,255" Border="[51,0,0,255,1]" FitContent="[False,True]" IgnoreEvents="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
+            <CUITextBlock AKA="label" IgnoreEvents="true" Text="RangedWeaponDamage" Visible="false" />
+            <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" ReflectCommands="true" RetranslateCommands="true" Visible="false">
+              <CUITextInput AKA="text" Absolute="[,,20,]" Border="[76,0,0,255,2]" Command="RangedWeaponDamage" Consumes="RangedWeaponDamage" IgnoreEvents="true" Visible="false" />
+              <CUISlider AKA="slider" Command="RangedWeaponDamage" Consumes="RangedWeaponDamage" FillEmptySpace="[True,False]" IgnoreEvents="true" Range="[0,5]" Relative="[,,,1]" Visible="false" />
+            </CUIHorizontalList>
+          </CUIVerticalList>
+          <CUIVerticalList BackgroundColor="25,0,0,255" Border="[51,0,0,255,1]" FitContent="[False,True]" IgnoreEvents="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
+            <CUITextBlock AKA="label" IgnoreEvents="true" Text="MeleeWeaponDamage" Visible="false" />
+            <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" ReflectCommands="true" RetranslateCommands="true" Visible="false">
+              <CUITextInput AKA="text" Absolute="[,,20,]" Border="[76,0,0,255,2]" Command="MeleeWeaponDamage" Consumes="MeleeWeaponDamage" IgnoreEvents="true" Visible="false" />
+              <CUISlider AKA="slider" Command="MeleeWeaponDamage" Consumes="MeleeWeaponDamage" FillEmptySpace="[True,False]" IgnoreEvents="true" Range="[0,5]" Relative="[,,,1]" Visible="false" />
+            </CUIHorizontalList>
+          </CUIVerticalList>
+          <CUIVerticalList BackgroundColor="25,0,0,255" Border="[51,0,0,255,1]" FitContent="[False,True]" IgnoreEvents="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
+            <CUITextBlock AKA="label" IgnoreEvents="true" Text="ExplosionDamage" Visible="false" />
+            <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" ReflectCommands="true" RetranslateCommands="true" Visible="false">
+              <CUITextInput AKA="text" Absolute="[,,20,]" Border="[76,0,0,255,2]" Command="ExplosionDamage" Consumes="ExplosionDamage" IgnoreEvents="true" Visible="false" />
+              <CUISlider AKA="slider" Command="ExplosionDamage" Consumes="ExplosionDamage" FillEmptySpace="[True,False]" IgnoreEvents="true" Range="[0,5]" Relative="[,,,1]" Visible="false" />
+            </CUIHorizontalList>
+          </CUIVerticalList>
+          <CUIVerticalList BackgroundColor="25,0,0,255" Border="[51,0,0,255,1]" FitContent="[False,True]" IgnoreEvents="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
+            <CUITextBlock AKA="label" IgnoreEvents="true" Text="TurretDamage" Visible="false" />
+            <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" ReflectCommands="true" RetranslateCommands="true" Visible="false">
+              <CUITextInput AKA="text" Absolute="[,,20,]" Border="[76,0,0,255,2]" Command="TurretDamage" Consumes="TurretDamage" IgnoreEvents="true" Visible="false" />
+              <CUISlider AKA="slider" Command="TurretDamage" Consumes="TurretDamage" FillEmptySpace="[True,False]" IgnoreEvents="true" Range="[0,5]" Relative="[,,,1]" Visible="false" />
+            </CUIHorizontalList>
+          </CUIVerticalList>
+          <CUIVerticalList BackgroundColor="25,0,0,255" Border="[51,0,0,255,1]" FitContent="[False,True]" IgnoreEvents="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
+            <CUITextBlock AKA="label" IgnoreEvents="true" Text="MonsterAttackDamage" Visible="false" />
+            <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" ReflectCommands="true" RetranslateCommands="true" Visible="false">
+              <CUITextInput AKA="text" Absolute="[,,20,]" Border="[76,0,0,255,2]" Command="MonsterAttackDamage" Consumes="MonsterAttackDamage" IgnoreEvents="true" Visible="false" />
+              <CUISlider AKA="slider" Command="MonsterAttackDamage" Consumes="MonsterAttackDamage" FillEmptySpace="[True,False]" IgnoreEvents="true" Range="[0,5]" Relative="[,,,1]" Visible="false" />
+            </CUIHorizontalList>
+          </CUIVerticalList>
+        </CUIVerticalList>
       </CUIVerticalList>
-      <CUIVerticalList AKA="PressureKillDelay" BackgroundColor="20,0,3,255" Border="[40,0,6,255,1]" FitContent="[False,True]" IgnoreEvents="true" Palette="Secondary" ReflectCommands="true" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" RetranslateCommands="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }" Visible="false">
-        <CUITextBlock AKA="label" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Text="PressureKillDelay" TextColor="244,204,210,255" Visible="false" />
-        <CUIHorizontalList AKA="controls" FitContent="[False,True]" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Visible="false">
-          <CUITextInput AKA="text" Absolute="[,,20,]" BackgroundColor="40,0,6,255" Border="[60,0,9,255,1]" Command="PressureKillDelay" Consumes="PressureKillDelay" IgnoreEvents="true" Palette="Secondary" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Visible="false" />
-          <CUISlider AKA="slider" Command="PressureKillDelay" Consumes="PressureKillDelay" FillEmptySpace="[True,False]" IgnoreEvents="true" Palette="Secondary" Range="[0,5]" Relative="[,,,1]" ResizeHandleColor="131,51,63,255" ResizeHandleGrabbedColor="211,51,76,255" Visible="false" />
+      <CUIVerticalList AKA="PressureKillDelay" FitContent="[False,True]" IgnoreEvents="true" Visible="false">
+        <CUITextBlock AKA="header" IgnoreEvents="true" Text="PressureKillDelay" TextAlign="[0.5,0.5]" TextScale="1" Visible="false" />
+        <CUIHorizontalList AKA="content" FitContent="[False,True]" IgnoreEvents="true" ReflectCommands="true" RetranslateCommands="true" Visible="false">
+          <CUITextInput AKA="text" Absolute="[,,20,]" Border="[76,0,0,255,2]" Command="PressureKillDelay" Consumes="PressureKillDelay" IgnoreEvents="true" Visible="false" />
+          <CUISlider AKA="slider" Command="PressureKillDelay" Consumes="PressureKillDelay" FillEmptySpace="[True,False]" IgnoreEvents="true" Range="[0,5]" Relative="[,,,1]" Visible="false" />
         </CUIHorizontalList>
       </CUIVerticalList>
     </CUIVerticalList>

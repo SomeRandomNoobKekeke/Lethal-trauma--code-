@@ -38,6 +38,9 @@ namespace Lethaltrauma
 
       Config.PropChanged += () => SyncWithConfig();
       SyncWithConfig();
+
+
+      // this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
     }
 
 
@@ -55,21 +58,33 @@ namespace Lethaltrauma
         TextAlign = CUIAnchor.Center,
         Style = CUIStylePrefab.FrameCaption,
       };
-      this["layout"]["content"] = new CUIVerticalList()
+      this["content"] = this["layout"]["content"] = new CUIVerticalList()
       {
         FillEmptySpace = new CUIBool2(false, true),
         Scrollable = true,
         Style = CUIStylePrefab.Main,
         ConsumeDragAndDrop = true,
+        ScrollSpeed = 0.5f,
       };
 
-      this["layout"]["content"]["WeaponDamage"] = CUIPrefab.TextAndSlider("Weapon Damage", "WeaponDamage", new FloatRange(0, 5));
-      this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.TextAndSlider("PressureKillDelay", "PressureKillDelay", new FloatRange(0, 5));
 
+      CUIVerticalList Damage = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("RangedWeaponDamage", "RangedWeaponDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("MeleeWeaponDamage", "MeleeWeaponDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("ExplosionDamage", "ExplosionDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("TurretDamage", "TurretDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("MonsterAttackDamage", "MonsterAttackDamage", new FloatRange(0, 5)));
+
+
+      this["layout"]["content"]["damage"] = CUIPrefab.WrapInGroup("Damage", Damage);
+
+      this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.WrapInGroup("PressureKillDelay", CUIPrefab.TextAndSlider("PressureKillDelay", new FloatRange(0, 5)));
 
 
 
       this["layout"]["content"].Palette = PaletteOrder.Secondary;
+
+
 
       this.SaveToFile(SavePath);
       this.LoadSelfFromFile(SavePath);

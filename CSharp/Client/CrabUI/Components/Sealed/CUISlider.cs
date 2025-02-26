@@ -78,7 +78,7 @@ namespace LTCrabUI
         Style = new CUIStyle()
         {
           ["Border"] = "Transparent",
-          ["BackgroundColor"] = "CUIPalette.Main.Text",
+          ["BackgroundColor"] = "CUIPalette.Slider",
         },
       };
 
@@ -91,7 +91,7 @@ namespace LTCrabUI
         Style = new CUIStyle()
         {
           ["Border"] = "Transparent",
-          ["BackgroundColor"] = "CUIPalette.Main.Text",
+          ["BackgroundColor"] = "CUIPalette.Slider",
         },
       };
 
@@ -101,7 +101,7 @@ namespace LTCrabUI
         Style = new CUIStyle()
         {
           ["Border"] = "Transparent",
-          ["BackgroundColor"] = "CUIPalette.Main.Text",
+          ["BackgroundColor"] = "CUIPalette.Slider",
         },
         Draggable = true,
         BackgroundSprite = CUI.TextureManager.GetCUISprite(0, 2),

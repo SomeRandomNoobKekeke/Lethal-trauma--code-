@@ -45,6 +45,7 @@ namespace Lethaltrauma
 #if CLIENT
       CUI.ModDir = Paths.ModDir;
       CUI.AssetsPath = Paths.AssetsFolder;
+      CUIPalette.DefaultPalette = "Red";
       CUI.Initialize();
 
       SetupCUI();
