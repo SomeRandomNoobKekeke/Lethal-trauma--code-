@@ -28,7 +28,7 @@ namespace Lethaltrauma
 
     public ModPaths Paths { get; set; }
 
-    public ServiceCollection Services = new ServiceCollection() { Debug = true };
+    public ServiceCollection Services = new ServiceCollection() { Debug = false };
 
     public void SetupServices()
     {
@@ -52,7 +52,7 @@ namespace Lethaltrauma
 
       SetupServices();
       Services.InjectEverything();
-      Services.PrintState();
+      //Services.PrintState();
 
       Debugger.Debug = true;
       PatchAll();

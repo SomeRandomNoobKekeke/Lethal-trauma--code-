@@ -60,10 +60,13 @@ namespace Lethaltrauma
         FillEmptySpace = new CUIBool2(false, true),
         Scrollable = true,
         Style = CUIStylePrefab.Main,
-
+        ConsumeDragAndDrop = true,
       };
 
-      this["layout"]["content"]["WeaponDamage"] = CUIPrefab.TextAndSlider("WeaponDamage", new FloatRange(0, 5));
+      this["layout"]["content"]["WeaponDamage"] = CUIPrefab.TextAndSlider("Weapon Damage", "WeaponDamage", new FloatRange(0, 5));
+      this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.TextAndSlider("PressureKillDelay", "PressureKillDelay", new FloatRange(0, 5));
+
+
 
 
       this["layout"]["content"].Palette = PaletteOrder.Secondary;

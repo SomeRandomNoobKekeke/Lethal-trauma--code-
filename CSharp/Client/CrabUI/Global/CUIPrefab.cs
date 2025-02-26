@@ -52,10 +52,8 @@ namespace LTCrabUI
       return frame;
     }
 
-    public static CUIComponent TextAndSlider(string name, FloatRange? range = null)
+    public static CUIComponent TextAndSlider(string name, string command, FloatRange? range = null)
     {
-      string command = name;
-
       CUIComponent wrapper = new CUIVerticalList()
       {
         FitContent = new CUIBool2(false, true),

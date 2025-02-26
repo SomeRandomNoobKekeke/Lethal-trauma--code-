@@ -124,44 +124,58 @@ namespace LTDependencyInjection
 
     public void InjectStaticProperties(Type[] types)
     {
-      List<PropertyInfo> entryPoints = new();
-      List<PropertyInfo> dependencies = new();
-
       foreach (Type T in types)
       {
+        List<PropertyInfo> entryPoints = new();
+        List<PropertyInfo> dependencies = new();
+
         foreach (PropertyInfo pi in T.GetProperties(BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
         {
           if (Attribute.IsDefined(pi, typeof(EntryPointAttribute))) entryPoints.Add(pi);
           if (Attribute.IsDefined(pi, typeof(SingletonAttribute))) dependencies.Add(pi);
           if (Attribute.IsDefined(pi, typeof(DependencyAttribute))) dependencies.Add(pi);
         }
-      }
 
-      foreach (PropertyInfo pi in entryPoints)
-      {
-        Info($"injecting static EntryPoint {pi.Name} -> {pi.DeclaringType.Name}", new Color(0, 255, 255));
-        object value = pi.GetValue(null);
-        if (value is null)
+        foreach (PropertyInfo pi in entryPoints)
         {
-          try
+          Info($"injecting static EntryPoint {pi.Name} -> {pi.DeclaringType.Name}", new Color(0, 255, 255));
+          object value = pi.GetValue(null);
+          if (value is null)
           {
-            value = Activator.CreateInstance(pi.PropertyType);
+            try
+            {
+              value = Activator.CreateInstance(pi.PropertyType);
+            }
+            catch (Exception e)
+            {
+              Log($"Failed to create instance of {pi.PropertyType}");
+              Log($"{e.Message}");
+            }
+            pi.SetValue(null, value);
           }
-          catch (Exception e)
-          {
-            Log($"Failed to create instance of {pi.PropertyType}");
-            Log($"{e.Message}");
-          }
-          pi.SetValue(null, value);
+          InjectProperties(value);
         }
-        InjectProperties(value);
+
+        foreach (PropertyInfo pi in dependencies)
+        {
+          Info($"injecting static dependency {pi.Name} -> {pi.DeclaringType.Name}", new Color(0, 255, 255));
+          pi.SetValue(null, GetService(pi.PropertyType));
+        }
+
+
+        MethodInfo afterInject = T.GetMethod(AfterInjectStaticMethodName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+        try
+        {
+          afterInject?.Invoke(null, null);
+        }
+        catch (Exception e)
+        {
+          Log($"{AfterInjectStaticMethodName} on {T} failed", Color.Red);
+          Log($"{e.Message}", Color.Red);
+        }
       }
 
-      foreach (PropertyInfo pi in dependencies)
-      {
-        Info($"injecting static dependency {pi.Name} -> {pi.DeclaringType.Name}", new Color(0, 255, 255));
-        pi.SetValue(null, GetService(pi.PropertyType));
-      }
+
     }
 
     public void FindAndCreateAllSingletons(Type[] types)

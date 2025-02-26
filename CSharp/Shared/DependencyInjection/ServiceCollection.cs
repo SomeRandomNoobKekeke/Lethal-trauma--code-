@@ -23,6 +23,7 @@ namespace LTDependencyInjection
     /// Method with this name will be called after injecting all props
     /// </summary>
     public static string AfterInjectMethodName = "AfterInject";
+    public static string AfterInjectStaticMethodName = "AfterInjectStatic";
     /// <summary>
     /// If true it will log actions to console
     /// </summary>

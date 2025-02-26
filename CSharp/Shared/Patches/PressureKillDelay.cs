@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework;
 using Barotrauma.Items.Components;
 using LTDependencyInjection;
 
-
 namespace Lethaltrauma
 {
   [PatchClass]
@@ -26,7 +25,9 @@ namespace Lethaltrauma
 
     public static float DefaultPressureKillDelay = 5.0f;
 
+
     [Dependency] public static ConfigProxy Config { get; set; }
+    [Dependency] public static Logger Logger { get; set; }
 
     public static float GlobalPressureKillDelay
     {
@@ -35,8 +36,18 @@ namespace Lethaltrauma
         foreach (Character character in Character.CharacterList)
         {
           character.CharacterHealth.PressureKillDelay = value;
+          Logger.Log($"character.CharacterHealth.PressureKillDelay {character.CharacterHealth.PressureKillDelay}");
         }
       }
+    }
+
+    public static void AfterInjectStatic()
+    {
+      Logger.Log("lol");
+      Config.PressureKillDelayChanged += (b) =>
+      {
+        GlobalPressureKillDelay = b;
+      };
     }
 
     public static void Character_Constructor_Postfix(Character __instance)
