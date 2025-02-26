@@ -19,15 +19,28 @@ namespace Lethaltrauma
     [Dependency] public Debouncer Debouncer { get; set; }
     [Dependency] public ConfigProxy Config { get; set; }
 
+
+    public void SyncWithConfig()
+    {
+      foreach (PropertyInfo pi in Config.Props)
+      {
+        DispatchDown(new CUIData(pi.Name, pi.GetValue(Config)));
+      }
+    }
+
     public override void Hydrate()
     {
-      AddCommand("Weapon Damage", (o) =>
+      OnAnyCommand += (command) =>
       {
-        if (float.TryParse(o.ToString(), out float f)) Debouncer.Debounce("guh", 50, () => Config.WeaponDamage = f);
-      });
+        Debouncer.Debounce("guh", 50, () => Config.SetProp(command.Name, command.Data));
+      };
 
-      Config.WeaponDamageChanged += (f) => DispatchDown(new CUIData("Weapon Damage", f));
+
+      Config.PropChanged += () => SyncWithConfig();
+      SyncWithConfig();
     }
+
+
 
     public void CreateUI()
     {
@@ -50,7 +63,7 @@ namespace Lethaltrauma
 
       };
 
-      this["layout"]["content"]["Weapon Damage"] = CUIPrefab.TextAndSlider("Weapon Damage", new FloatRange(0, 5));
+      this["layout"]["content"]["WeaponDamage"] = CUIPrefab.TextAndSlider("WeaponDamage", new FloatRange(0, 5));
 
 
       this["layout"]["content"].Palette = PaletteOrder.Secondary;

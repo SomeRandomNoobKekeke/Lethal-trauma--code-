@@ -41,6 +41,8 @@ namespace Lethaltrauma
   public class ConfigProxy : IConfig
   {
     [Dependency] public IConfigContainer Container { get; set; }
+    [Dependency] public Logger Logger { get; set; }
+    [Dependency] public Parser Parser { get; set; }
 
     public event Action<float> WeaponDamageChanged;
     public event Action<bool> OverrideHumanHealthMultChanged;
@@ -48,6 +50,28 @@ namespace Lethaltrauma
     public event Action<float> MonsterHealthChanged;
     public event Action<bool> NoReputationLossInMaskChanged;
     public event Action<float> PressureKillDelayChanged;
+    public event Action PropChanged;
+
+    public void SetProp(string name, object value)
+    {
+      PropertyInfo pi = typeof(ConfigProxy).GetProperty(name);
+      if (pi == null) return;
+      try
+      {
+        if (Parser.UltimateParse(value.ToString(), pi.PropertyType, out object result))
+        {
+          Logger.Log($"{result}");
+          pi.SetValue(this, result);
+        }
+      }
+      catch (Exception e)
+      {
+        Logger.Warning(e);
+      }
+    }
+
+    public IEnumerable<PropertyInfo> Props => typeof(ConfigProxy).GetProperties();
+    public IEnumerable<string> PropNames => typeof(ConfigProxy).GetProperties().Select(pi => pi.Name);
 
 
 
@@ -58,6 +82,7 @@ namespace Lethaltrauma
       {
         Container.Config.WeaponDamage = value;
         WeaponDamageChanged?.Invoke(value);
+        PropChanged?.Invoke();
       }
     }
     public bool OverrideHealthMult
@@ -67,6 +92,7 @@ namespace Lethaltrauma
       {
         Container.Config.OverrideHealthMult = value;
         OverrideHumanHealthMultChanged?.Invoke(value);
+        PropChanged?.Invoke();
       }
     }
     public float HumanHealth
@@ -76,6 +102,7 @@ namespace Lethaltrauma
       {
         Container.Config.HumanHealth = value;
         HumanHealthChanged?.Invoke(value);
+        PropChanged?.Invoke();
       }
     }
 
@@ -86,6 +113,7 @@ namespace Lethaltrauma
       {
         Container.Config.MonsterHealth = value;
         MonsterHealthChanged?.Invoke(value);
+        PropChanged?.Invoke();
       }
     }
 
@@ -96,6 +124,7 @@ namespace Lethaltrauma
       {
         Container.Config.NoReputationLossInMask = value;
         NoReputationLossInMaskChanged?.Invoke(value);
+        PropChanged?.Invoke();
       }
     }
 
@@ -106,6 +135,7 @@ namespace Lethaltrauma
       {
         Container.Config.PressureKillDelay = value;
         PressureKillDelayChanged?.Invoke(value);
+        PropChanged?.Invoke();
       }
     }
   }
