@@ -116,6 +116,11 @@ namespace LTCrabUI
 
       OnMouseEnter += (e) => ChangeSprite();
       OnMouseLeave += (e) => ChangeSprite();
+
+      OnConsume += (o) =>
+      {
+        if (o is bool b) State = b;
+      };
     }
   }
 

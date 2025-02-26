@@ -167,18 +167,18 @@ namespace LTCrabUI
 
 
 
-    public static CUIHorizontalList TickboxWithLabel(float tickboxSize, string text)
+    public static CUIHorizontalList TickboxWithLabel(string text, string command, float tickboxSize = 22.0f)
     {
       CUIHorizontalList list = new CUIHorizontalList()
       {
         FitContent = new CUIBool2(true, true),
-        Border = new CUIBorder(),
       };
 
       list["tickbox"] = new CUITickBox()
       {
         Absolute = new CUINullRect(w: tickboxSize, h: tickboxSize),
-        Command = text,
+        Command = command,
+        Consumes = command,
       };
 
       list["text"] = new CUITextBlock()

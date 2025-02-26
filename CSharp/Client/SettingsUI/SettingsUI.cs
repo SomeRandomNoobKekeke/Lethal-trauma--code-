@@ -18,6 +18,7 @@ namespace Lethaltrauma
     public static string SavePath => Path.Combine(Mod.Instance.Paths.DataUI, "SettingsUI.xml");
     [Dependency] public Debouncer Debouncer { get; set; }
     [Dependency] public ConfigProxy Config { get; set; }
+    [Dependency] public Logger Logger { get; set; }
 
 
     public void SyncWithConfig()
@@ -39,7 +40,7 @@ namespace Lethaltrauma
       Config.PropChanged += () => SyncWithConfig();
       SyncWithConfig();
 
-
+      //this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
       // this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
     }
 
@@ -65,6 +66,7 @@ namespace Lethaltrauma
         Style = CUIStylePrefab.Main,
         ConsumeDragAndDrop = true,
         ScrollSpeed = 0.5f,
+        Gap = 10.0f,
       };
 
 
@@ -74,11 +76,22 @@ namespace Lethaltrauma
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("ExplosionDamage", "ExplosionDamage", new FloatRange(0, 5)));
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("TurretDamage", "TurretDamage", new FloatRange(0, 5)));
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("MonsterAttackDamage", "MonsterAttackDamage", new FloatRange(0, 5)));
-
-
       this["layout"]["content"]["damage"] = CUIPrefab.WrapInGroup("Damage", Damage);
 
+
+      CUIVerticalList Health = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
+      Health.Append(CUIPrefab.TickboxWithLabel("OverrideHealthMult", "OverrideHealthMult"));
+      Health.Append(CUIPrefab.TextAndSliderWithLabel("HumanHealthMult", "HumanHealth", new FloatRange(0, 5)));
+      this["layout"]["content"]["health"] = CUIPrefab.WrapInGroup("Health", Health);
+
+
       this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.WrapInGroup("PressureKillDelay", CUIPrefab.TextAndSlider("PressureKillDelay", new FloatRange(0, 5)));
+
+      this["layout"]["content"]["NoReputationLossInMask"] = CUIPrefab.TickboxWithLabel("NoReputationLossInMask", "NoReputationLossInMask");
+
+      this["layout"]["content"]["CustomGuards"] = CUIPrefab.TickboxWithLabel("CustomGuards", "UseCustomGuards");
+
+
 
 
 

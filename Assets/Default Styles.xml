@@ -58,6 +58,10 @@
     <Border>Transparent</Border>
   </CUISlider>
 
+  <CUITickBox>
+    <BackgroundColor>CUIPalette.Main.Text</BackgroundColor>
+  </CUITickBox>
+
   <CUICanvas>
     <BackgroundColor>White</BackgroundColor>
     <Border>Black</Border>

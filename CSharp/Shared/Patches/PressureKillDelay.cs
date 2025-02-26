@@ -43,7 +43,6 @@ namespace Lethaltrauma
 
     public static void AfterInjectStatic()
     {
-      Logger.Log("lol");
       Config.PressureKillDelayChanged += (b) =>
       {
         GlobalPressureKillDelay = b;

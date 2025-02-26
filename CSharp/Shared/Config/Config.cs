@@ -30,6 +30,7 @@ namespace Lethaltrauma
     public float HumanHealth { get; set; }
     public float MonsterHealth { get; set; }
     public bool NoReputationLossInMask { get; set; }
+    public bool UseCustomGuards { get; set; }
     public float PressureKillDelay { get; set; }
   }
 
@@ -44,6 +45,7 @@ namespace Lethaltrauma
     public float HumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;
     public bool NoReputationLossInMask { get; set; } = true;
+    public bool UseCustomGuards { get; set; } = true;
     public float PressureKillDelay { get; set; } = 1.0f;
   }
 
@@ -171,6 +173,16 @@ namespace Lethaltrauma
       {
         Container.Config.NoReputationLossInMask = value;
         NoReputationLossInMaskChanged?.Invoke(value);
+        PropChanged?.Invoke();
+      }
+    }
+
+    public bool UseCustomGuards
+    {
+      get => Container.Config.UseCustomGuards;
+      set
+      {
+        Container.Config.UseCustomGuards = value;
         PropChanged?.Invoke();
       }
     }
