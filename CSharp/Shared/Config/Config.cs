@@ -64,6 +64,8 @@ namespace Lethaltrauma
     public event Action<float> PressureKillDelayChanged;
     public event Action PropChanged;
 
+    public void InvokePropChanged() => PropChanged?.Invoke();
+
     public void SetProp(string name, object value)
     {
       PropertyInfo pi = typeof(ConfigProxy).GetProperty(name);
@@ -72,7 +74,6 @@ namespace Lethaltrauma
       {
         if (Parser.UltimateParse(value.ToString(), pi.PropertyType, out object result))
         {
-          Logger.Log($"{result}");
           pi.SetValue(this, result);
         }
       }

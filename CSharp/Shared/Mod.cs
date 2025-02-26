@@ -22,9 +22,13 @@ namespace Lethaltrauma
     public static string Name = "Lethal Trauma";
     public static Harmony Harmony = new Harmony("lethaltrauma");
 
+
     [EntryPoint] public static Mod Instance { get; set; }
     [Singleton] public Debugger Debugger { get; set; }
     [Singleton] public Logger Logger { get; set; }
+
+    public event Action OnInitialize;
+    public event Action OnDispose;
 
     public ModPaths Paths { get; set; }
 
@@ -61,6 +65,8 @@ namespace Lethaltrauma
 
       InitializeProjSpecific();
 
+      OnInitialize?.Invoke();
+
       Logger.Info($"{Name} initialized");
     }
 
@@ -85,6 +91,8 @@ namespace Lethaltrauma
     public void PreInitPatching() { }
     public void Dispose()
     {
+      OnDispose?.Invoke();
+
       RemoveCommands();
       DisposeProjSpecific();
 

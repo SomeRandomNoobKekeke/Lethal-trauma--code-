@@ -36,7 +36,6 @@ namespace Lethaltrauma
         foreach (Character character in Character.CharacterList)
         {
           character.CharacterHealth.PressureKillDelay = value;
-          Logger.Log($"character.CharacterHealth.PressureKillDelay {character.CharacterHealth.PressureKillDelay}");
         }
       }
     }

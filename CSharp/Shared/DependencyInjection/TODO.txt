@@ -4,3 +4,5 @@
 Resolve singleton circular dependencies
 
 make sure non singleton instances are inected correctly
+
+Fix creating a singleton when instance already exist

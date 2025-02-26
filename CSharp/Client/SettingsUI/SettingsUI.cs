@@ -44,6 +44,11 @@ namespace Lethaltrauma
       // this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
     }
 
+    public void AfterInject()
+    {
+      Mod.Instance.OnDispose += () => this.SaveToFile(SavePath);
+    }
+
 
 
     public void CreateUI()
@@ -99,7 +104,7 @@ namespace Lethaltrauma
 
 
 
-      this.SaveToFile(SavePath);
+      //this.SaveToFile(SavePath);
       this.LoadSelfFromFile(SavePath);
     }
 

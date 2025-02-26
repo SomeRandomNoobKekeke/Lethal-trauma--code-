@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <RangedWeaponDamage>1</RangedWeaponDamage>
+  <MeleeWeaponDamage>1</MeleeWeaponDamage>
+  <ExplosionDamage>1</ExplosionDamage>
+  <TurretDamage>1</TurretDamage>
+  <MonsterAttackDamage>1</MonsterAttackDamage>
+  <OverrideHealthMult>true</OverrideHealthMult>
+  <HumanHealth>1</HumanHealth>
+  <MonsterHealth>1</MonsterHealth>
+  <NoReputationLossInMask>true</NoReputationLossInMask>
+  <UseCustomGuards>true</UseCustomGuards>
+  <PressureKillDelay>1</PressureKillDelay>
+</Config>
