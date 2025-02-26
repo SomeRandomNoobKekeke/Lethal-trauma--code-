@@ -10,19 +10,23 @@ using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using LTDependencyInjection;
-
+#if CLIENT
+using LTCrabUI;
+#endif
 
 namespace Lethaltrauma
 {
   public class PatchClassAttribute : System.Attribute { }
   public partial class Mod : IAssemblyPlugin
   {
-    public static string Name = "Lethaltrauma";
+    public static string Name = "Lethal Trauma";
     public static Harmony Harmony = new Harmony("lethaltrauma");
 
     [EntryPoint] public static Mod Instance { get; set; }
     [Singleton] public Debugger Debugger { get; set; }
     [Singleton] public Logger Logger { get; set; }
+
+    public ModPaths Paths { get; set; }
 
     public ServiceCollection Services = new ServiceCollection() { Debug = true };
 
@@ -36,12 +40,25 @@ namespace Lethaltrauma
       Instance = this;
       AddCommands();
 
+      Paths = new ModPaths(Name);
+
+#if CLIENT
+      CUI.ModDir = Paths.ModDir;
+      CUI.AssetsPath = Paths.AssetsFolder;
+      CUI.Initialize();
+
+      SetupCUI();
+#endif
+
       SetupServices();
       Services.InjectEverything();
       Services.PrintState();
 
       Debugger.Debug = true;
       PatchAll();
+
+
+      InitializeProjSpecific();
 
       Logger.Info($"{Name} initialized");
     }
@@ -68,6 +85,11 @@ namespace Lethaltrauma
     public void Dispose()
     {
       RemoveCommands();
+      DisposeProjSpecific();
+
+#if CLIENT
+      CUI.Dispose();
+#endif
       Instance = null;
     }
   }

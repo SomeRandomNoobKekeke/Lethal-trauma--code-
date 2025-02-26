@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Linq;
 using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-
+using LTDependencyInjection;
 
 namespace Lethaltrauma
 {
@@ -16,6 +15,7 @@ namespace Lethaltrauma
   public class Debouncer
   {
     public static LuaCsTimer Timer => GameMain.LuaCs.Timer;
+    [Dependency] public Logger Logger { get; set; }
 
     private Dictionary<string, LuaCsTimer.TimedAction> Scheduled = new();
 
@@ -31,11 +31,14 @@ namespace Lethaltrauma
 
       if (Scheduled.ContainsKey(name))
       {
-        Scheduled[name].ExecutionTime = timedAction.ExecutionTime;
+        Timer.timedActions.Remove(Scheduled[name]);
+        Scheduled[name] = timedAction;
+        Timer.AddTimer(timedAction);
       }
       else
       {
         Timer.AddTimer(timedAction);
+        Scheduled[name] = timedAction;
       }
 
     }

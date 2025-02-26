@@ -52,6 +52,42 @@ namespace LTCrabUI
       return frame;
     }
 
+    public static CUIComponent TextAndSlider(string name, FloatRange? range = null)
+    {
+      string command = name;
+
+      CUIComponent wrapper = new CUIVerticalList()
+      {
+        FitContent = new CUIBool2(false, true),
+        Style = CUIStylePrefab.Main,
+        RetranslateCommands = true,
+        ReflectCommands = true,
+      };
+
+      wrapper["label"] = new CUITextBlock(name);
+      wrapper["controls"] = new CUIHorizontalList()
+      {
+        FitContent = new CUIBool2(false, true),
+      };
+
+      wrapper["controls"]["text"] = new CUITextInput()
+      {
+        Absolute = new CUINullRect(w: 20.0f),
+        Consumes = command,
+        Command = command,
+      };
+      wrapper["controls"]["slider"] = new CUISlider()
+      {
+        Relative = new CUINullRect(h: 1.0f),
+        FillEmptySpace = new CUIBool2(true, false),
+        Consumes = command,
+        Command = command,
+        Range = range ?? new FloatRange(0, 1),
+      };
+
+      return wrapper;
+    }
+
     public static CUIFrame ListFrameWithHeader()
     {
       CUIFrame frame = new CUIFrame() { };

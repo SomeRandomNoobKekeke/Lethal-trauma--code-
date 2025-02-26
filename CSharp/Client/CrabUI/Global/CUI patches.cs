@@ -72,6 +72,27 @@ namespace LTCrabUI
 
     public static void GUI_TogglePauseMenu_Postfix()
     {
+      try
+      {
+        if (GUI.PauseMenu != null)
+        {
+          GUIFrame frame = GUI.PauseMenu;
+          GUIComponent pauseMenuInner = frame.GetChild(1);
+          GUIComponent list = frame.GetChild(1).GetChild(0);
+          GUIButton resumeButton = (GUIButton)list.GetChild(0);
+
+          GUIButton.OnClickedHandler oldHandler = resumeButton.OnClicked;
+
+          resumeButton.OnClicked = (GUIButton button, object obj) =>
+          {
+            bool guh = oldHandler(button, obj);
+            CUI.InvokeOnPauseMenuToggled();
+            return guh;
+          };
+        }
+      }
+      catch (Exception e) { CUI.Warning(e); }
+
       CUI.InvokeOnPauseMenuToggled();
     }
 
