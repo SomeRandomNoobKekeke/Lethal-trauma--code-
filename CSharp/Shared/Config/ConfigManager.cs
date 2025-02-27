@@ -14,7 +14,6 @@ using System.IO;
 
 namespace Lethaltrauma
 {
-
   [Singleton]
   public class ConfigManager : IConfigContainer
   {

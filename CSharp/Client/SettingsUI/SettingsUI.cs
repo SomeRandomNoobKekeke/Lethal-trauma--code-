@@ -20,6 +20,9 @@ namespace Lethaltrauma
     [Dependency] public ConfigProxy Config { get; set; }
     [Dependency] public Logger Logger { get; set; }
 
+    public Vector2 MinimizedSize;
+    public Vector2 RestoredSize;
+
 
     public void SyncWithConfig()
     {
@@ -40,6 +43,18 @@ namespace Lethaltrauma
       Config.PropChanged += () => SyncWithConfig();
       SyncWithConfig();
 
+      CUITextBlock header = this.Get<CUITextBlock>("layout.header");
+      MinimizedSize = new Vector2(300, header.UnwrappedMinSize.Y - 1);
+      RestoredSize = MinimizedSize with { Y = 300 };
+
+      header.OnDClick += (e) =>
+      {
+        if (Real.Size != MinimizedSize) Absolute = Absolute with { Size = MinimizedSize };
+        else Absolute = Absolute with { Size = RestoredSize };
+      };
+
+      //Absolute = Absolute with { Size = MinimizedSize };
+
       //this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
       // this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
     }
@@ -54,8 +69,7 @@ namespace Lethaltrauma
     public void CreateUI()
     {
       Revealed = false;
-      Absolute = new CUINullRect(0, 0, 300, 300);
-      Anchor = CUIAnchor.CenterRight;
+      Anchor = CUIAnchor.TopRight;
 
       this["layout"] = new CUIVerticalList() { Relative = new CUINullRect(0, 0, 1, 1), };
       this["layout"]["header"] = new CUITextBlock("Lethaltrauma Settings")
@@ -64,6 +78,9 @@ namespace Lethaltrauma
         TextAlign = CUIAnchor.Center,
         Style = CUIStylePrefab.FrameCaption,
       };
+
+      Absolute = new CUINullRect(0, 0, 300, this.Get<CUITextBlock>("layout.header").UnwrappedMinSize.Y - 1);
+
       this["content"] = this["layout"]["content"] = new CUIVerticalList()
       {
         FillEmptySpace = new CUIBool2(false, true),
@@ -76,33 +93,39 @@ namespace Lethaltrauma
 
 
       CUIVerticalList Damage = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
-      Damage.Append(CUIPrefab.TextAndSliderWithLabel("RangedWeaponDamage", "RangedWeaponDamage", new FloatRange(0, 5)));
-      Damage.Append(CUIPrefab.TextAndSliderWithLabel("MeleeWeaponDamage", "MeleeWeaponDamage", new FloatRange(0, 5)));
-      Damage.Append(CUIPrefab.TextAndSliderWithLabel("ExplosionDamage", "ExplosionDamage", new FloatRange(0, 5)));
-      Damage.Append(CUIPrefab.TextAndSliderWithLabel("TurretDamage", "TurretDamage", new FloatRange(0, 5)));
-      Damage.Append(CUIPrefab.TextAndSliderWithLabel("MonsterAttackDamage", "MonsterAttackDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("Ranged Weapon Damage", "RangedWeaponDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("Melee Weapon Damage", "MeleeWeaponDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("Explosion Damage", "ExplosionDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("Turret Damage", "TurretDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TextAndSliderWithLabel("Monster Attack Damage", "MonsterAttackDamage", new FloatRange(0, 5)));
       this["layout"]["content"]["damage"] = CUIPrefab.WrapInGroup("Damage", Damage);
 
       CUIVerticalList Reaction = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
-      Reaction.Append(CUIPrefab.TickboxWithLabel("OverrideAim", "OverrideAim"));
-      Reaction.Append(CUIPrefab.TextAndSliderWithLabel("AimAccuracy", "AimAccuracy", new FloatRange(0, 1)));
-      Reaction.Append(CUIPrefab.TextAndSliderWithLabel("AimSpeed", "AimSpeed", new FloatRange(0, 1)));
+      Reaction.Append(CUIPrefab.TickboxWithLabel("Override Bot Aim", "OverrideAim"));
+      Reaction.Append(CUIPrefab.TextAndSliderWithLabel("Bot Aim Accuracy", "AimAccuracy", new FloatRange(0, 1)));
+      Reaction.Append(CUIPrefab.TextAndSliderWithLabel("Bot Aim Speed", "AimSpeed", new FloatRange(0, 1)));
       this["layout"]["content"]["reaction"] = CUIPrefab.WrapInGroup("Bot Aim", Reaction);
 
 
       CUIVerticalList Health = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
-      Health.Append(CUIPrefab.TickboxWithLabel("OverrideHealthMult", "OverrideHealthMult"));
-      Health.Append(CUIPrefab.TextAndSliderWithLabel("HumanHealthMult", "HumanHealth", new FloatRange(0, 5)));
-      Health.Append(CUIPrefab.TextAndSliderWithLabel("MonsterHealthMult", "MonsterHealth", new FloatRange(0, 5)));
+      Health.Append(CUIPrefab.TickboxWithLabel("Override Health Multiplier", "OverrideHealthMult"));
+      Health.Append(CUIPrefab.TextAndSliderWithLabel("Human Health Multiplier", "HumanHealth", new FloatRange(0, 5)));
+      Health.Append(CUIPrefab.TextAndSliderWithLabel("Monster Health Multiplier", "MonsterHealth", new FloatRange(0, 5)));
       this["layout"]["content"]["health"] = CUIPrefab.WrapInGroup("Health", Health);
 
-      this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.WrapInGroup("PressureKillDelay", CUIPrefab.TextAndSlider("PressureKillDelay", new FloatRange(0, 5)));
+      this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.WrapInGroup("Pressure Kill Delay", CUIPrefab.TextAndSlider("PressureKillDelay", new FloatRange(0, 5)));
 
-      this["layout"]["content"]["NoReputationLossInMask"] = CUIPrefab.TickboxWithLabel("NoReputationLossInMask", "NoReputationLossInMask");
+      this["layout"]["content"]["NoReputationLossInMask"] = CUIPrefab.TickboxWithLabel("No Reputation Loss In Mask", "NoReputationLossInMask");
 
       this["layout"]["content"].Palette = PaletteOrder.Secondary;
 
-      this.SaveToFile(SavePath);
+
+      //HACK
+      if (Mod.Instance.Paths.IsInLocalMods)
+      {
+        this.SaveToFile(SavePath);
+      }
+
       this.LoadSelfFromFile(SavePath);
     }
 

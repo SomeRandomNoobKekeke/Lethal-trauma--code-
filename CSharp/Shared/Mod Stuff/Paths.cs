@@ -34,11 +34,14 @@ namespace Lethaltrauma
         AssetsFolder = Path.Combine(ModDir, "Assets");
         Data = Path.Combine(ModDir, "Data");
         DataUI = Path.Combine(Data, "UI");
+        IsInLocalMods = modDir.Contains("LocalMods");
       }
     }
     public string AssetsFolder { get; set; }
     public string Data { get; set; }
     public string DataUI { get; set; }
+
+    public bool IsInLocalMods { get; set; }
 
     public void FindModDir()
     {
