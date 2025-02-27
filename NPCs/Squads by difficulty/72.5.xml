@@ -44,13 +44,13 @@
         <Item identifier="stungundartfulgurium" amount="2" />
       </Item>
       <Item identifier="stungundartfulgurium" amount="8" />
-      <Item identifier="hmg" equip="false">
-        <Item identifier="hmgmagazine" />
+      <Item identifier="assaultrifle" equip="false">
+        <Item identifier="assaultriflemagazine" />
         <Item identifier="flashlight">
-          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="batterycell" />
         </Item>
       </Item>
-      <Item identifier="hmgmagazine" amount="2" />
+      <Item identifier="assaultriflemagazine" amount="4" />
       <Item identifier="boardingaxe" />
     </ItemSet>
   </npc>
@@ -82,7 +82,7 @@
     </ItemSet>
   </npc>
   <!-- Separatists -->
-  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="72.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
@@ -108,7 +108,7 @@
       <Item identifier="boardingaxe" />
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="72.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
@@ -125,22 +125,22 @@
         <Item identifier="stungundartfulgurium" amount="2" />
       </Item>
       <Item identifier="stungundartfulgurium" amount="8" />
-      <Item identifier="hmg" equip="false">
-        <Item identifier="hmgmagazine" />
+      <Item identifier="assaultrifle" equip="false">
+        <Item identifier="assaultriflemagazine" />
         <Item identifier="flashlight">
-          <Item identifier="fulguriumbatterycell" />
+          <Item identifier="batterycell" />
         </Item>
       </Item>
-      <Item identifier="hmgmagazine" amount="2" />
+      <Item identifier="assaultriflemagazine" amount="4" />
       <Item identifier="boardingaxe" />
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="72.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
-      <Item identifier="ballistichelmet2" equip="true" />
+      <Item identifier="piratehelmet" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="antidama2" />
       </Item>

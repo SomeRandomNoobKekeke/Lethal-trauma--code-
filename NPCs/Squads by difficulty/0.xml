@@ -33,7 +33,7 @@
     </ItemSet>
   </npc>
   <!-- Separatists -->
-  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="0">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform3" equip="true" />
@@ -43,7 +43,7 @@
       </Item>
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="0">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform3" equip="true" />
@@ -57,7 +57,7 @@
       </Item>
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="0">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform3" equip="true" />

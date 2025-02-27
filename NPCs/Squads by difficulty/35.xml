@@ -24,6 +24,7 @@
     <ItemSet commonness="35">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityuniform1" equip="true" />
+      <Item identifier="bodyarmor" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundart" amount="2" />
@@ -43,6 +44,7 @@
     <ItemSet commonness="35">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityuniform1" equip="true" />
+      <Item identifier="bodyarmor" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundart" amount="2" />
@@ -61,7 +63,7 @@
     </ItemSet>
   </npc>
   <!-- Separatists -->
-  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="35">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform2" equip="true" />
@@ -80,10 +82,11 @@
       <Item identifier="divingknifehardened" />
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="35">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform2" equip="true" />
+      <Item identifier="piratebodyarmor" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundart" amount="2" />
@@ -99,10 +102,11 @@
       <Item identifier="divingknifehardened" />
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="35">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform2" equip="true" />
+      <Item identifier="piratebodyarmor" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundart" amount="2" />

@@ -8,10 +8,6 @@
       <Item identifier="bodyarmor" equip="true" />
       <Item identifier="ballistichelmet3" equip="true" />
       <Item identifier="handcuffs" />
-      <Item identifier="stunbaton">
-        <Item identifier="fulguriumbatterycell" />
-      </Item>
-
       <Item identifier="boardingaxe" />
     </ItemSet>
   </npc>
@@ -20,12 +16,12 @@
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityuniform2" equip="true" />
       <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="ballistichelmet1" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundartfulgurium" amount="2" />
       </Item>
       <Item identifier="stungundartfulgurium" amount="8" />
-
       <Item identifier="assaultrifle" equip="false">
         <Item identifier="assaultriflemagazine" />
         <Item identifier="flashlight">
@@ -41,6 +37,7 @@
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityuniform2" equip="true" />
       <Item identifier="bodyarmor" equip="true" />
+      <Item identifier="ballistichelmet2" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundartfulgurium" amount="2" />
@@ -57,25 +54,22 @@
     </ItemSet>
   </npc>
   <!-- Separatists -->
-  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="50">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
       <Item identifier="ballistichelmet3" equip="true" />
       <Item identifier="handcuffs" />
-      <Item identifier="stunbaton">
-        <Item identifier="fulguriumbatterycell" />
-      </Item>
       <Item identifier="boardingaxe" />
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="50">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
-      <Item identifier="piratehelmet" equip="true" />
+      <Item identifier="ballistichelmet1" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundartfulgurium" amount="2" />
@@ -91,11 +85,12 @@
       <Item identifier="divingknifehardened" />
     </ItemSet>
   </npc>
-  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
+  <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="50">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
+      <Item identifier="piratehelmet" equip="true" />
       <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundartfulgurium" amount="2" />

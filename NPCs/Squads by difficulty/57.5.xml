@@ -105,7 +105,7 @@
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
       <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
-      <Item identifier="ballistichelmet2" equip="true" />
+      <Item identifier="piratehelmet" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
