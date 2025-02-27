@@ -4,8 +4,8 @@
   <npc identifier="securitynpccoalitionmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="15">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="commonerclothes3" equip="true" />
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="securityuniform3" equip="true" />
+      <Item identifier="handcuffs" />
       <Item identifier="stunbaton">
         <Item identifier="batterycell" />
       </Item>
@@ -15,8 +15,8 @@
   <npc identifier="securitynpccoalitionranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="15">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="commonerclothes3" equip="true" />
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="securityuniform3" equip="true" />
+      <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundart" amount="2" />
       </Item>
@@ -31,8 +31,8 @@
   <npc identifier="securitynpccoalitionspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="15">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="commonerclothes3" equip="true" />
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="securityuniform3" equip="true" />
+      <Item identifier="handcuffs" />
       <Item identifier="harpoongun" equip="false">
         <Item identifier="explosivespear" amount="6" />
         <Item identifier="flashlight">
@@ -47,8 +47,8 @@
   <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
     <ItemSet commonness="15">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="pirateclothes" equip="true" />
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="securityseparatistsuniform3" equip="true" />
+      <Item identifier="handcuffs" />
       <Item identifier="stunbaton">
         <Item identifier="batterycell" />
       </Item>
@@ -58,8 +58,8 @@
   <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
     <ItemSet commonness="15">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="pirateclothes" equip="true" />
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="securityseparatistsuniform3" equip="true" />
+      <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundart" amount="2" />
       </Item>
@@ -74,8 +74,8 @@
   <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
     <ItemSet commonness="15">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="pirateclothes" equip="true" />
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="securityseparatistsuniform3" equip="true" />
+      <Item identifier="handcuffs" />
       <Item identifier="harpoongun" equip="false">
         <Item identifier="explosivespear" amount="6" />
         <Item identifier="flashlight">

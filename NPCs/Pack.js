@@ -48,4 +48,7 @@ let builder = new XMLBuilder({
 
 fs.writeFileSync('./Security.xml', builder.build(template))
 
+console.log("------------------------\nPacked!\n------------------------");
+
+
 

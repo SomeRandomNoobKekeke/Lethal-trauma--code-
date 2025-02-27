@@ -27,7 +27,7 @@ namespace Lethaltrauma
       SettingsUI.CreateUI();
       CUI.TopMain.Append(SettingsUI);
       CUI.OnPauseMenuToggled += () => SettingsUI.Revealed = GUI.PauseMenuOpen;
-      SettingsUI.Revealed = true;
+      //SettingsUI.Revealed = true;
     }
 
     public void DisposeProjSpecific()

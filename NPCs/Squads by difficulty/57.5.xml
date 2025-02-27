@@ -4,13 +4,13 @@
   <npc identifier="securitynpccoalitionmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="57.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="securityuniform3" equip="true" />
+      <Item identifier="securityuniform2" equip="true" />
       <Item identifier="bodyarmor" equip="true" />
       <Item identifier="ballistichelmet1" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="handcuffs" />
       <Item identifier="stunbaton">
         <Item identifier="fulguriumbatterycell" />
       </Item>
@@ -23,13 +23,13 @@
   <npc identifier="securitynpccoalitionranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="57.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="securityuniform3" equip="true" />
+      <Item identifier="securityuniform2" equip="true" />
       <Item identifier="bodyarmor" equip="true" />
       <Item identifier="ballistichelmet2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundartfulgurium" amount="2" />
       </Item>
@@ -43,13 +43,13 @@
   <npc identifier="securitynpccoalitionspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" skillmultiplier="3.0" behavior="Patrol">
     <ItemSet commonness="57.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="securityuniform3" equip="true" />
+      <Item identifier="securityuniform2" equip="true" />
       <Item identifier="bodyarmor" equip="true" />
       <Item identifier="ballistichelmet2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="handcuffs" />
       <Item identifier="handcannon" equip="false">
         <Item identifier="handcannonround" amount="6" />
         <Item identifier="flashlight">
@@ -64,13 +64,13 @@
   <npc identifier="securitynpcseparatistsmelee" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
     <ItemSet commonness="57.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="securityuniform1" equip="true" />
+      <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
       <Item identifier="ballistichelmet1" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="handcuffs" />
       <Item identifier="stunbaton">
         <Item identifier="fulguriumbatterycell" />
       </Item>
@@ -83,13 +83,13 @@
   <npc identifier="securitynpcseparatistsranged" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
     <ItemSet commonness="57.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="securityuniform1" equip="true" />
+      <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
       <Item identifier="ballistichelmet2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="handcuffs" />
       <Item identifier="stungun">
         <Item identifier="stungundartfulgurium" amount="2" />
       </Item>
@@ -103,13 +103,13 @@
   <npc identifier="securitynpcseparatistsspecial" job="securityofficer" tags="securitynpc" spawnpointtags="security" healthmultiplier="1" behavior="Patrol">
     <ItemSet commonness="57.5">
       <Item identifier="idcard" equip="true" tags="id_outpostsecurity" />
-      <Item identifier="securityuniform1" equip="true" />
+      <Item identifier="securityseparatistsuniform1" equip="true" />
       <Item identifier="piratebodyarmor" equip="true" />
       <Item identifier="ballistichelmet2" equip="true" />
       <Item identifier="autoinjectorheadset" equip="true">
         <Item identifier="hyperzine" />
       </Item>
-      <Item identifier="handcuffs" amount="2" />
+      <Item identifier="handcuffs" />
       <Item identifier="handcannon" equip="false">
         <Item identifier="handcannonround" amount="6" />
         <Item identifier="flashlight">
