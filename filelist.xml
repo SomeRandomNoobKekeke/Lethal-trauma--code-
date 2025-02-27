@@ -1,6 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Lethal Trauma" modversion="1.0.0" corepackage="False">
-  <NPCSets file="%ModDir%/OutpostNpcs.xml" />
-  <NPCSets file="%ModDir%/Security.xml" />
-  <OutpostConfig file="%ModDir%/OutpostGenerationParameters.xml" />
-</contentpackage>
+<contentpackage name="Lethal Trauma" modversion="1.0.0" corepackage="False"></contentpackage>
