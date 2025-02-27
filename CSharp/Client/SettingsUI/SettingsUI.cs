@@ -83,6 +83,12 @@ namespace Lethaltrauma
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("MonsterAttackDamage", "MonsterAttackDamage", new FloatRange(0, 5)));
       this["layout"]["content"]["damage"] = CUIPrefab.WrapInGroup("Damage", Damage);
 
+      CUIVerticalList Reaction = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
+      Reaction.Append(CUIPrefab.TickboxWithLabel("OverrideAim", "OverrideAim"));
+      Reaction.Append(CUIPrefab.TextAndSliderWithLabel("AimAccuracy", "AimAccuracy", new FloatRange(0, 1)));
+      Reaction.Append(CUIPrefab.TextAndSliderWithLabel("AimSpeed", "AimSpeed", new FloatRange(0, 1)));
+      this["layout"]["content"]["reaction"] = CUIPrefab.WrapInGroup("Bot Aim", Reaction);
+
 
       CUIVerticalList Health = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
       Health.Append(CUIPrefab.TickboxWithLabel("OverrideHealthMult", "OverrideHealthMult"));
@@ -90,20 +96,11 @@ namespace Lethaltrauma
       Health.Append(CUIPrefab.TextAndSliderWithLabel("MonsterHealthMult", "MonsterHealth", new FloatRange(0, 5)));
       this["layout"]["content"]["health"] = CUIPrefab.WrapInGroup("Health", Health);
 
-
       this["layout"]["content"]["PressureKillDelay"] = CUIPrefab.WrapInGroup("PressureKillDelay", CUIPrefab.TextAndSlider("PressureKillDelay", new FloatRange(0, 5)));
 
       this["layout"]["content"]["NoReputationLossInMask"] = CUIPrefab.TickboxWithLabel("NoReputationLossInMask", "NoReputationLossInMask");
 
-      this["layout"]["content"]["CustomGuards"] = CUIPrefab.TickboxWithLabel("CustomGuards", "UseCustomGuards");
-
-
-
-
-
       this["layout"]["content"].Palette = PaletteOrder.Secondary;
-
-
 
       this.SaveToFile(SavePath);
       this.LoadSelfFromFile(SavePath);

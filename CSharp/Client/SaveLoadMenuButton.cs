@@ -13,7 +13,7 @@ using LTDependencyInjection;
 
 namespace Lethaltrauma
 {
-  public class SaveLoaderMenuButton
+  public class SaveLoadMenuButton
   {
     static void CreateVerificationPrompt(string text, Action confirmAction)
     {

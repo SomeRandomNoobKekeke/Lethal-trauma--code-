@@ -14,43 +14,48 @@ namespace Lethaltrauma
   [PatchClass]
   public class CharacterHealthInterface
   {
-    private static void ResetHumanPrefabHealthMultiplier(Character human)
+    public static void UpdateHealthMultipliers()
     {
-      if (human.humanPrefab != null)
+      foreach (Character character in Character.CharacterList)
       {
-        human.HumanPrefabHealthMultiplier = human.humanPrefab.HealthMultiplier;
-        if (GameMain.NetworkMember != null)
-        {
-          human.HumanPrefabHealthMultiplier *= human.humanPrefab.HealthMultiplierInMultiplayer;
-        }
-      }
-      else
-      {
-        human.HumanPrefabHealthMultiplier = 1.0f;
-      }
-    }
-
-    private static bool useHumanPrefabHealthMultiplier = true;
-    public static bool UseHumanPrefabHealthMultiplier
-    {
-      get => useHumanPrefabHealthMultiplier;
-      set
-      {
-        if (useHumanPrefabHealthMultiplier == value) return;
-        useHumanPrefabHealthMultiplier = value;
-
-        foreach (Character character in Character.CharacterList)
+        if (Config.OverrideHealthMult)
         {
           if (character.IsHuman)
           {
-            if (value) ResetHumanPrefabHealthMultiplier(character);
-            else character.HumanPrefabHealthMultiplier = 1.0f;
+            character.HumanPrefabHealthMultiplier = Config.HumanHealth;
+          }
+          else
+          {
+            character.HumanPrefabHealthMultiplier = Config.MonsterHealth;
+          }
+        }
+        else
+        {
+          if (character.humanPrefab != null)
+          {
+            character.HumanPrefabHealthMultiplier = character.humanPrefab.HealthMultiplier;
+            if (GameMain.NetworkMember != null)
+            {
+              character.HumanPrefabHealthMultiplier *= character.humanPrefab.HealthMultiplierInMultiplayer;
+            }
+          }
+          else
+          {
+            character.HumanPrefabHealthMultiplier = 1.0f;
           }
         }
       }
     }
 
+
     [Dependency] public static ConfigProxy Config { get; set; }
+
+    public static void AfterInjectStatic()
+    {
+      Config.OverrideHealthMultChanged += (v) => UpdateHealthMultipliers();
+      Config.HumanHealthChanged += (v) => UpdateHealthMultipliers();
+      Config.MonsterHealthChanged += (v) => UpdateHealthMultipliers();
+    }
 
     public static void Initialize()
     {
@@ -63,17 +68,15 @@ namespace Lethaltrauma
 
     public static void Character_Constructor_Postfix(Character __instance)
     {
-      if (Config == null) return;
-      if (Config.OverrideHealthMult)
+      if (Config == null || !Config.OverrideHealthMult) return;
+
+      if (__instance.IsHuman)
       {
-        if (__instance.IsHuman)
-        {
-          __instance.HumanPrefabHealthMultiplier = Config.HumanHealth;
-        }
-        else
-        {
-          __instance.HumanPrefabHealthMultiplier = Config.MonsterHealth;
-        }
+        __instance.HumanPrefabHealthMultiplier = Config.HumanHealth;
+      }
+      else
+      {
+        __instance.HumanPrefabHealthMultiplier = Config.MonsterHealth;
       }
     }
   }

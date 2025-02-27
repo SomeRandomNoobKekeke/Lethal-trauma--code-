@@ -24,13 +24,13 @@ namespace Lethaltrauma
     public float ExplosionDamage { get; set; }
     public float TurretDamage { get; set; }
     public float MonsterAttackDamage { get; set; }
-
-
     public bool OverrideHealthMult { get; set; }
     public float HumanHealth { get; set; }
     public float MonsterHealth { get; set; }
+    public bool OverrideAim { get; set; }
+    public float AimSpeed { get; set; }
+    public float AimAccuracy { get; set; }
     public bool NoReputationLossInMask { get; set; }
-    public bool UseCustomGuards { get; set; }
     public float PressureKillDelay { get; set; }
   }
 
@@ -44,8 +44,10 @@ namespace Lethaltrauma
     public bool OverrideHealthMult { get; set; } = true;
     public float HumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;
+    public bool OverrideAim { get; set; } = true;
+    public float AimSpeed { get; set; } = 0.8f;
+    public float AimAccuracy { get; set; } = 0.75f;
     public bool NoReputationLossInMask { get; set; } = true;
-    public bool UseCustomGuards { get; set; } = true;
     public float PressureKillDelay { get; set; } = 1.0f;
   }
 
@@ -57,10 +59,12 @@ namespace Lethaltrauma
     [Dependency] public Parser Parser { get; set; }
 
 
-    public event Action<bool> OverrideHumanHealthMultChanged;
+    public event Action<bool> OverrideHealthMultChanged;
     public event Action<float> HumanHealthChanged;
     public event Action<float> MonsterHealthChanged;
-    public event Action<bool> NoReputationLossInMaskChanged;
+    public event Action<bool> OverrideAimChanged;
+    public event Action<float> AimSpeedChanged;
+    public event Action<float> AimAccuracyChanged;
     public event Action<float> PressureKillDelayChanged;
     public event Action PropChanged;
 
@@ -134,14 +138,13 @@ namespace Lethaltrauma
       }
     }
 
-
     public bool OverrideHealthMult
     {
       get => Container.Config.OverrideHealthMult;
       set
       {
         Container.Config.OverrideHealthMult = value;
-        OverrideHumanHealthMultChanged?.Invoke(value);
+        OverrideHealthMultChanged?.Invoke(value);
         PropChanged?.Invoke();
       }
     }
@@ -167,26 +170,48 @@ namespace Lethaltrauma
       }
     }
 
+    public bool OverrideAim
+    {
+      get => Container.Config.OverrideAim;
+      set
+      {
+        Container.Config.OverrideAim = value;
+        OverrideAimChanged?.Invoke(value);
+        PropChanged?.Invoke();
+      }
+    }
+    public float AimSpeed
+    {
+      get => Container.Config.AimSpeed;
+      set
+      {
+        Container.Config.AimSpeed = value;
+        AimSpeedChanged?.Invoke(value);
+        PropChanged?.Invoke();
+      }
+    }
+    public float AimAccuracy
+    {
+      get => Container.Config.AimAccuracy;
+      set
+      {
+        Container.Config.AimAccuracy = value;
+        AimAccuracyChanged?.Invoke(value);
+        PropChanged?.Invoke();
+      }
+    }
+
     public bool NoReputationLossInMask
     {
       get => Container.Config.NoReputationLossInMask;
       set
       {
         Container.Config.NoReputationLossInMask = value;
-        NoReputationLossInMaskChanged?.Invoke(value);
         PropChanged?.Invoke();
       }
     }
 
-    public bool UseCustomGuards
-    {
-      get => Container.Config.UseCustomGuards;
-      set
-      {
-        Container.Config.UseCustomGuards = value;
-        PropChanged?.Invoke();
-      }
-    }
+
 
     public float PressureKillDelay
     {

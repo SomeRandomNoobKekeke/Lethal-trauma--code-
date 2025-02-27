@@ -8,7 +8,9 @@
   <OverrideHealthMult>true</OverrideHealthMult>
   <HumanHealth>1</HumanHealth>
   <MonsterHealth>1</MonsterHealth>
+  <OverrideAim>true</OverrideAim>
+  <AimSpeed>0.56</AimSpeed>
+  <AimAccuracy>0.36</AimAccuracy>
   <NoReputationLossInMask>true</NoReputationLossInMask>
-  <UseCustomGuards>true</UseCustomGuards>
   <PressureKillDelay>1</PressureKillDelay>
 </Config>
