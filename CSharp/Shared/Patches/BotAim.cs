@@ -41,9 +41,11 @@ namespace Lethaltrauma
     }
 
     [Dependency] public static ConfigProxy Config { get; set; }
+    [Dependency] public static ConfigManager ConfigManager { get; set; }
 
     public static void AfterInjectStatic()
     {
+      ConfigManager.ConfigChanged += UpdateAim;
       Config.OverrideAimChanged += (v) => UpdateAim();
       Config.AimAccuracyChanged += (v) => UpdateAim();
       Config.AimSpeedChanged += (v) => UpdateAim();

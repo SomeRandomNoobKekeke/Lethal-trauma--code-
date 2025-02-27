@@ -27,6 +27,7 @@ namespace Lethaltrauma
 
 
     [Dependency] public static ConfigProxy Config { get; set; }
+    [Dependency] public static ConfigManager ConfigManager { get; set; }
     [Dependency] public static Logger Logger { get; set; }
 
     public static float GlobalPressureKillDelay
@@ -42,10 +43,8 @@ namespace Lethaltrauma
 
     public static void AfterInjectStatic()
     {
-      Config.PressureKillDelayChanged += (b) =>
-      {
-        GlobalPressureKillDelay = b;
-      };
+      ConfigManager.ConfigChanged += () => GlobalPressureKillDelay = Config.PressureKillDelay;
+      Config.PressureKillDelayChanged += (b) => GlobalPressureKillDelay = b;
     }
 
     public static void Character_Constructor_Postfix(Character __instance)

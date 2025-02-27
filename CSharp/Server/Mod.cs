@@ -10,7 +10,7 @@ using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using LTDependencyInjection;
-
+using Barotrauma.Networking;
 
 namespace Lethaltrauma
 {
@@ -18,7 +18,8 @@ namespace Lethaltrauma
   {
     public void InitializeProjSpecific()
     {
-
+      GameMain.LuaCs.Networking.Receive("lt_ask", NetManager.Give);
+      GameMain.LuaCs.Networking.Receive("lt_sync", NetManager.Receive);
     }
 
     public void DisposeProjSpecific()

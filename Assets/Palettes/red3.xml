@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Palette Name="red3" BaseColor="128,0,32,255">
+  <Frame Background="0,0,0,255" Border="64,0,16,255" Text="242,229,232,255" />
+  <Header Background="38,0,9,255" Border="51,0,12,255" Text="242,229,232,255" />
+  <Nav Background="25,0,6,255" Border="38,0,9,255" Text="229,204,210,255" />
+  <Main Background="12,0,3,255" Border="25,0,6,255" Text="229,204,210,255" />
+  <Component Background="0,0,0,0" Border="0,0,0,0" Text="229,204,210,255" />
+  <Button Background="128,0,32,255" Border="64,0,16,255" Disabled="38,12,19,255" />
+  <CloseButton Background="153,51,76,255" />
+  <DDOption Background="38,0,9,255" Border="25,0,6,255" Hover="64,0,16,255" Text="229,204,210,255" />
+  <Handle Background="102,51,63,255" Grabbed="153,51,76,255" />
+  <Slider>216,178,188,255</Slider>
+  <Input Background="25,0,6,255" Border="38,0,9,255" Text="229,204,210,255" Focused="128,0,32,255" Invalid="255,0,0,255" Valid="0,255,0,255" Selection="216,178,188,127" Caret="216,178,188,127" />
+</Palette>

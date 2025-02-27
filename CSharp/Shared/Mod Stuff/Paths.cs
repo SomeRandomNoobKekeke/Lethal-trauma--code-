@@ -8,8 +8,6 @@ using System.IO;
 using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 
 namespace Lethaltrauma
 {

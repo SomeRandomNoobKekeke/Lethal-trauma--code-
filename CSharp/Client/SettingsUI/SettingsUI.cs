@@ -18,6 +18,7 @@ namespace Lethaltrauma
     public static string SavePath => Path.Combine(Mod.Instance.Paths.DataUI, "SettingsUI.xml");
     [Dependency] public Debouncer Debouncer { get; set; }
     [Dependency] public ConfigProxy Config { get; set; }
+    [Dependency] public ConfigManager ConfigManager { get; set; }
     [Dependency] public Logger Logger { get; set; }
 
     public Vector2 MinimizedSize;
@@ -40,7 +41,8 @@ namespace Lethaltrauma
       };
 
 
-      Config.PropChanged += () => SyncWithConfig();
+      Config.PropChanged += SyncWithConfig;
+      ConfigManager.ConfigChanged += SyncWithConfig;
       SyncWithConfig();
 
       CUITextBlock header = this.Get<CUITextBlock>("layout.header");
@@ -53,10 +55,15 @@ namespace Lethaltrauma
         else Absolute = Absolute with { Size = RestoredSize };
       };
 
-      //Absolute = Absolute with { Size = MinimizedSize };
+      this.Get<CUIButton>("layout.content.load buttons.vanilla").OnMouseDown += (e) =>
+      {
+        ConfigManager.Load(ConfigManager.VanillaConfigName);
+      };
 
-      //this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
-      // this["layout"]["content"]["damage"].Palette = PaletteOrder.Tertiary;
+      this.Get<CUIButton>("layout.content.load buttons.default").OnMouseDown += (e) =>
+      {
+        ConfigManager.Load(ConfigManager.DefaultConfigName);
+      };
     }
 
     public void AfterInject()
@@ -91,6 +98,21 @@ namespace Lethaltrauma
         Gap = 10.0f,
       };
 
+      this["layout"]["content"]["load buttons"] = new CUIHorizontalList()
+      {
+        FitContent = new CUIBool2(false, true),
+      };
+      this["layout"]["content"]["load buttons"]["vanilla"] = new CUIButton("Vanilla")
+      {
+        FillEmptySpace = new CUIBool2(true, false),
+      };
+      this["layout"]["content"]["load buttons"]["default"] = new CUIButton("Default")
+      {
+        FillEmptySpace = new CUIBool2(true, false),
+      };
+
+
+
 
       CUIVerticalList Damage = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("Ranged Weapon Damage", "RangedWeaponDamage", new FloatRange(0, 5)));
@@ -117,8 +139,8 @@ namespace Lethaltrauma
 
       this["layout"]["content"]["NoReputationLossInMask"] = CUIPrefab.TickboxWithLabel("No Reputation Loss In Mask", "NoReputationLossInMask");
 
-      this["layout"]["content"].Palette = PaletteOrder.Secondary;
-
+      this["layout"]["content"].DeepPalette = PaletteOrder.Secondary;
+      this["layout"]["content"]["load buttons"].DeepPalette = PaletteOrder.Tertiary;
 
       //HACK
       if (Mod.Instance.Paths.IsInLocalMods)

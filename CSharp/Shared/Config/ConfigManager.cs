@@ -10,18 +10,27 @@ using Microsoft.Xna.Framework;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
-
+using Barotrauma.Networking;
 
 namespace Lethaltrauma
 {
   [Singleton]
   public class ConfigManager : IConfigContainer
   {
-    public static string SavePath => Path.Combine(Mod.Instance.Paths.Data, "Config.xml");
+    public static string GetConfigPath(string name) => Path.Combine(Mod.Instance.Paths.Data, name + ".xml");
+    public static string ConfigName = "Config";
+    public static string VanillaConfigName = "Vanilla";
+    public static string DefaultConfigName = "Default";
+
+    public static string SavePath => GetConfigPath(ConfigName);
 
     [Dependency] public ConfigProxy Proxy { get; set; }
     [Dependency] public Parser Parser { get; set; }
     [Dependency] public Logger Logger { get; set; }
+    [Dependency] public Debugger Debugger { get; set; }
+    [Dependency] public NetManager NetManager { get; set; }
+
+    public event Action ConfigChanged;
 
     private Config config = new Config();
     public Config Config
@@ -30,15 +39,19 @@ namespace Lethaltrauma
       set
       {
         config = value;
-        Proxy.InvokePropChanged(); //guh
+        ConfigChanged?.Invoke();
       }
     }
 
 
     public void AfterInject()
     {
-      Mod.Instance.OnDispose += Save;
-      Mod.Instance.OnInitialize += Load;
+#if CLIENT
+      Proxy.PropChanged  += () => 
+      {
+        if (GameMain.IsMultiplayer && Utils.IHavePermissions) NetManager.Sync();
+      };
+#endif
     }
 
     public void Save()
@@ -55,11 +68,21 @@ namespace Lethaltrauma
       xdoc.Save(SavePath);
     }
 
-    public void Load()
+    public void Load(string name = null)
     {
+#if CLIENT
+      if(GameMain.IsMultiplayer && !Utils.IHavePermissions)return;
+#endif
+
+      name ??= ConfigName;
+      string path = GetConfigPath(name);
+      if (!File.Exists(path)) return;
+
+      Debugger.Log($"loading {name}", DebugLevel.ConfigLoading);
+
       Config newConfig = new Config();
 
-      XDocument xdoc = XDocument.Load(SavePath);
+      XDocument xdoc = XDocument.Load(path);
       XElement root = xdoc.Root;
 
       foreach (XElement element in root.Elements())
@@ -75,6 +98,32 @@ namespace Lethaltrauma
         {
           Logger.Warning($"Coldn't parse {element} into {pi}");
         }
+      }
+
+      Config = newConfig;
+
+      //HACK
+#if SERVER
+      NetManager.Broadcast();
+#else
+      if (GameMain.IsMultiplayer && Utils.IHavePermissions) NetManager.Sync();
+#endif
+    }
+
+    public void Encode(IWriteMessage msg)
+    {
+      foreach (PropertyInfo pi in typeof(Config).GetProperties())
+      {
+        NetManager.WriteObject(pi.GetValue(Config), msg);
+      }
+    }
+
+    public void Decode(IReadMessage msg)
+    {
+      Config newConfig = new Config();
+      foreach (PropertyInfo pi in typeof(Config).GetProperties())
+      {
+        pi.SetValue(newConfig, NetManager.ReadObject(pi.PropertyType, msg));
       }
 
       Config = newConfig;

@@ -19,6 +19,8 @@ namespace Lethaltrauma
   {
     All = 0,
     PatchExecuted = 1,
+    NetEvents = 2,
+    ConfigLoading = 4,
   }
 
   public enum DebugAdditionalPrint

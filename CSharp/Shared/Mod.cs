@@ -26,6 +26,8 @@ namespace Lethaltrauma
     [EntryPoint] public static Mod Instance { get; set; }
     [Singleton] public Debugger Debugger { get; set; }
     [Singleton] public Logger Logger { get; set; }
+    [Singleton] public NetManager NetManager { get; set; }
+    [Singleton] public ConfigManager ConfigManager { get; set; }
 
     public event Action OnInitialize;
     public event Action OnDispose;
@@ -42,7 +44,7 @@ namespace Lethaltrauma
     public void Initialize()
     {
       Instance = this;
-      AddCommands();
+      //AddCommands();
 
       Paths = new ModPaths(Name);
 
@@ -59,7 +61,8 @@ namespace Lethaltrauma
       Services.InjectEverything();
       //Services.PrintState();
 
-      Debugger.Debug = true;
+      Debugger.Debug = Paths.IsInLocalMods;
+      //Debugger.CurrentLevel = DebugLevel.NetEvents | DebugLevel.ConfigLoading;
       PatchAll();
 
 
@@ -93,7 +96,7 @@ namespace Lethaltrauma
     {
       OnDispose?.Invoke();
 
-      RemoveCommands();
+      //RemoveCommands();
       DisposeProjSpecific();
 
 #if CLIENT

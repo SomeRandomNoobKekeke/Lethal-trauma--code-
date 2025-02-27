@@ -49,9 +49,11 @@ namespace Lethaltrauma
 
 
     [Dependency] public static ConfigProxy Config { get; set; }
+    [Dependency] public static ConfigManager ConfigManager { get; set; }
 
     public static void AfterInjectStatic()
     {
+      ConfigManager.ConfigChanged += UpdateHealthMultipliers;
       Config.OverrideHealthMultChanged += (v) => UpdateHealthMultipliers();
       Config.HumanHealthChanged += (v) => UpdateHealthMultipliers();
       Config.MonsterHealthChanged += (v) => UpdateHealthMultipliers();
