@@ -19,7 +19,7 @@ namespace Lethaltrauma
   public class PatchClassAttribute : System.Attribute { }
   public partial class Mod : IAssemblyPlugin
   {
-    public static string Name = "Lethal Trauma";
+    public static string Name = "Lethaltrauma (code)";
     public static Harmony Harmony = new Harmony("lethaltrauma");
 
 

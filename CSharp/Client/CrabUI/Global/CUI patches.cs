@@ -138,6 +138,7 @@ namespace LTCrabUI
 
     private static bool KeyboardDispatcher_set_Subscriber_Replace(IKeyboardSubscriber value, KeyboardDispatcher __instance)
     {
+      if (FocusResolver == null) return true;
       FocusResolver.OnVanillaIKeyboardSubscriberSet(value);
       return false;
     }
