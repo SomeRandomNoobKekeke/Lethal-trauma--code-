@@ -76,7 +76,7 @@ namespace LTCrabUI
         if (CycleOnClick)
         {
           SelectNext();
-          DispatchUp(new CUICommand(Command, Selected));
+          if (Command != null) DispatchUp(new CUICommand(Command, Selected));
         }
       };
     }

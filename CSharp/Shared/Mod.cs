@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -13,6 +12,11 @@ using LTDependencyInjection;
 #if CLIENT
 using LTCrabUI;
 #endif
+
+using System.Runtime.CompilerServices;
+[assembly: IgnoresAccessChecksTo("Barotrauma")]
+[assembly: IgnoresAccessChecksTo("DedicatedServer")]
+[assembly: IgnoresAccessChecksTo("BarotraumaCore")]
 
 namespace Lethaltrauma
 {
@@ -59,7 +63,6 @@ namespace Lethaltrauma
 
       SetupServices();
       Services.InjectEverything();
-      //Services.PrintState();
 
       Debugger.Debug = Paths.IsInLocalMods;
       //Debugger.CurrentLevel = DebugLevel.NetEvents | DebugLevel.ConfigLoading;

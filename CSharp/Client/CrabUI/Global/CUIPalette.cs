@@ -39,7 +39,7 @@ namespace LTCrabUI
 
     public override string ToString() => $"CUIPalette {Name}";
     public static string PaletteSetsPath => Path.Combine(CUI.PalettesPath, "Sets");
-    public static string DefaultPalette = "Default";
+    public static string DefaultPalette = "Blue";
 
 
     //TODO why is it here? how could sane person find these?
@@ -122,6 +122,7 @@ namespace LTCrabUI
 
     public static void Initialize()
     {
+      Stopwatch sw = Stopwatch.StartNew();
       if (CUI.PalettesPath == null) return;
 
       LoadedPalettes.Clear();
@@ -133,6 +134,8 @@ namespace LTCrabUI
       // Secondary = LoadedPalettes.GetValueOrDefault("purple");
       // Tertiary = LoadedPalettes.GetValueOrDefault("blue");
       // Quaternary = LoadedPalettes.GetValueOrDefault("cyan");
+
+      CUIDebug.Log($"CUIPalette.Initialize took {sw.ElapsedMilliseconds}ms");
     }
 
     public static void LoadPalettes()
@@ -240,7 +243,7 @@ namespace LTCrabUI
       void loadFrame(Vector2 offset, PaletteOrder order)
       {
         CUIFrame frame = CUIComponent.LoadFromFile<CUIFrame>(Path.Combine(CUI.AssetsPath, $"PaletteDemo.xml"));
-        frame.Palette = order;
+        frame.DeepPalette = order;
         frame.Absolute = frame.Absolute with { Position = offset };
         frame.AddCommand("Close", (o) => frame.RemoveSelf());
         CUI.TopMain.Append(frame);
