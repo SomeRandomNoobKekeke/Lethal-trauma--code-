@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml.Linq;
 using Barotrauma.Extensions;
-namespace LTCrabUI
+namespace CrabUI
 {
   /// <summary>
   /// A button  
@@ -101,6 +101,7 @@ namespace LTCrabUI
 
       OnMouseOff += (e) => DetermineColor();
       OnMouseOn += (e) => DetermineColor();
+      OnStyleApplied += DetermineColor;
       DetermineColor();
     }
 

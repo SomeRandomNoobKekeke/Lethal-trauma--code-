@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace LTCrabUI
+namespace CrabUI
 {
   public static class CUIDebug
   {

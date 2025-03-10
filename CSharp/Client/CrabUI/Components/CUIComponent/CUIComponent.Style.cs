@@ -15,7 +15,7 @@ using System.Xml;
 using System.Xml.Linq;
 using HarmonyLib;
 
-namespace LTCrabUI
+namespace CrabUI
 {
   public partial class CUIComponent : IDisposable
   {
@@ -23,6 +23,12 @@ namespace LTCrabUI
     {
       Style = new CUIStyle();
     }
+
+    /// <summary>
+    /// Use it to e.g. update component color
+    /// </summary>
+    public event Action OnStyleApplied;
+    internal void InvokeOnStyleApplied() => OnStyleApplied?.Invoke();
 
     private void HandleStylePropChange(string key, string value)
     {

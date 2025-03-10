@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
-  <RangedWeaponDamage>3</RangedWeaponDamage>
-  <MeleeWeaponDamage>3</MeleeWeaponDamage>
+  <RangedWeaponDamage>5</RangedWeaponDamage>
+  <MeleeWeaponDamage>5</MeleeWeaponDamage>
   <ExplosionDamage>1.5</ExplosionDamage>
   <TurretDamage>1</TurretDamage>
   <MonsterAttackDamage>1</MonsterAttackDamage>

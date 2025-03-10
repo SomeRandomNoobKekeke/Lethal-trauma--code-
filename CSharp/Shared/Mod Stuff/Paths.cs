@@ -48,6 +48,10 @@ namespace Lethaltrauma
       );
 
       if (package != null) ModDir = Path.GetFullPath(package.Dir);
+      else
+      {
+        Mod.Log($"Couldn't find mod folder for {ModName}", Color.Orange);
+      }
     }
 
     public ModPaths() { }

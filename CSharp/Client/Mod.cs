@@ -10,7 +10,7 @@ using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using LTDependencyInjection;
-using LTCrabUI;
+using CrabUI;
 
 namespace Lethaltrauma
 {

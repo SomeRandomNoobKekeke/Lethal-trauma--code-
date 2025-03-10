@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml;
 using System.Xml.Linq;
-namespace LTCrabUI
+namespace CrabUI
 {
   /// <summary>
   /// Drop down list, aka Select

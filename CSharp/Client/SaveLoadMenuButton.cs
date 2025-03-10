@@ -8,7 +8,7 @@ using System.IO;
 using Barotrauma;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
-using LTCrabUI;
+using CrabUI;
 using LTDependencyInjection;
 
 namespace Lethaltrauma

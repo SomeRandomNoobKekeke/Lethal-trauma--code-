@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace LTCrabUI
+namespace CrabUI
 {
   /// <summary>
   /// Default layout, simple descartes coordinate plane

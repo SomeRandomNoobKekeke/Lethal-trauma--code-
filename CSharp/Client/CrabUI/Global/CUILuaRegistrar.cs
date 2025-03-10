@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 using HarmonyLib;
 using MoonSharp.Interpreter;
 
-namespace LTCrabUI
+namespace CrabUI
 {
   public class CUIInternalAttribute : System.Attribute { }
   [CUIInternal]

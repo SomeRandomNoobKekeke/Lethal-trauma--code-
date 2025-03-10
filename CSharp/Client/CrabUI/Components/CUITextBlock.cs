@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml.Linq;
-namespace LTCrabUI
+namespace CrabUI
 {
   /// <summary>
   /// Passive block of text

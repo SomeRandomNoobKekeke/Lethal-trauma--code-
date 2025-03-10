@@ -10,7 +10,7 @@ using HarmonyLib;
 using Microsoft.Xna.Framework;
 using LTDependencyInjection;
 #if CLIENT
-using LTCrabUI;
+using CrabUI;
 #endif
 
 using System.Runtime.CompilerServices;
@@ -23,9 +23,8 @@ namespace Lethaltrauma
   public class PatchClassAttribute : System.Attribute { }
   public partial class Mod : IAssemblyPlugin
   {
-    public static string Name = "Lethaltrauma (code)";
+    public static string Name = "Lethaltrauma";
     public static Harmony Harmony = new Harmony("lethaltrauma");
-
 
     [EntryPoint] public static Mod Instance { get; set; }
     [Singleton] public Debugger Debugger { get; set; }
@@ -56,6 +55,7 @@ namespace Lethaltrauma
       CUI.ModDir = Paths.ModDir;
       CUI.AssetsPath = Paths.AssetsFolder;
       CUIPalette.DefaultPalette = "Red";
+      CUI.HookIdentifier = Name;
       CUI.Initialize();
 
       SetupCUI();
@@ -91,6 +91,12 @@ namespace Lethaltrauma
           }
         }
       }
+    }
+
+    public static void Log(object msg, Color? color = null)
+    {
+      color ??= Color.Cyan;
+      LuaCsLogger.LogMessage($"{msg ?? "null"}", color * 0.8f, color);
     }
 
     public void OnLoadCompleted() { }
