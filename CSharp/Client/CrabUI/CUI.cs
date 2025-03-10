@@ -23,9 +23,10 @@ namespace CrabUI
   /// </summary>
   public partial class CUI
   {
-    // bruh
-    //[CUIInternal]
-    //static CUI() { InitStatic(); }
+    static CUI()
+    {
+      CUI.Log($"static CUI() {Assembly.GetExecutingAssembly()}", Color.Lime);
+    }
 
     public static Vector2 GameScreenSize => new Vector2(GameMain.GraphicsWidth, GameMain.GraphicsHeight);
     public static Rectangle GameScreenRect => new Rectangle(0, 0, GameMain.GraphicsWidth, GameMain.GraphicsHeight);
@@ -68,10 +69,23 @@ namespace CrabUI
       set => TextureManager.PGNAssets = value;
     }
 
+    private static List<CUI> Instances = new List<CUI>();
     /// <summary>
-    /// A singleton
+    /// The singleton
     /// </summary>
-    public static CUI Instance;
+    public static CUI Instance
+    {
+      get
+      {
+        if (Instances.Count == 0) return null;
+        return Instances.First();
+      }
+      set
+      {
+        Instances.Clear();
+        if (value != null) Instances.Add(value);
+      }
+    }
     /// <summary>
     /// Orchestrates Drawing and updates, there could be only one
     /// CUI.Main is located under vanilla GUI
@@ -113,7 +127,15 @@ namespace CrabUI
     /// <summary>
     /// It's important to set it, if 2 CUIs try to add a hook with same id one won't be added
     /// </summary>
-    public static string HookIdentifier { get; set; } = "";
+    public static string HookIdentifier
+    {
+      get => hookIdentifier;
+      set
+      {
+        hookIdentifier = value?.Replace(' ', '_');
+      }
+    }
+    private static string hookIdentifier = "";
     public static Harmony harmony;
     public static Random Random = new Random();
 
@@ -170,11 +192,12 @@ namespace CrabUI
     /// </summary>
     public static void Initialize()
     {
+      CUIDebug.Log($"CUI.Initialize {HookIdentifier} Instance:[{Instance?.GetHashCode()}] UserCount:{UserCount}", Color.Lime);
       if (Instance == null)
       {
         Stopwatch sw = Stopwatch.StartNew();
         if (HookIdentifier == null || HookIdentifier == "") CUI.Warning($"Warning: CUI.HookIdentifier is not set, this mod may conflict with other GUI mods");
-        harmony = new Harmony($"CrabUI.{HookIdentifier}");
+
         InitStatic();
         // this should init only static stuff that doesn't depend on instance
         OnInit?.Invoke();
@@ -187,6 +210,8 @@ namespace CrabUI
         CUIDebug.Log($"CUI.OnInit?.Invoke took {sw.ElapsedMilliseconds}ms");
 
         sw.Restart();
+
+        harmony = new Harmony($"CrabUI.{HookIdentifier}");
         PatchAll();
         CUIDebug.Log($"CUI.PatchAll took {sw.ElapsedMilliseconds}ms");
 
@@ -198,6 +223,8 @@ namespace CrabUI
       }
 
       UserCount++;
+
+      CUIDebug.Log($"CUI.Initialized {HookIdentifier} Instance:[{Instance?.GetHashCode()}] UserCount:{UserCount}", Color.Lime);
     }
 
     public static void OnLoadCompleted()
@@ -212,6 +239,8 @@ namespace CrabUI
     /// </summary>
     public static void Dispose()
     {
+      CUIDebug.Log($"CUI.Dispose {HookIdentifier} Instance:[{Instance?.GetHashCode()}] UserCount:{UserCount}", Color.Lime);
+
       UserCount--;
 
       if (UserCount <= 0)
@@ -229,6 +258,8 @@ namespace CrabUI
 
         Instance = null;
         UserCount = 0;
+
+        CUIDebug.Log($"CUI.Disposed {HookIdentifier} Instance:[{Instance?.GetHashCode()}] UserCount:{UserCount}", Color.Lime);
       }
 
       GameMain.Instance.Window.TextInput -= ReEmitWindowTextInput;

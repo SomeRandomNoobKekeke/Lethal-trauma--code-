@@ -52,10 +52,12 @@ namespace Lethaltrauma
       Paths = new ModPaths(Name);
 
 #if CLIENT
+      CUI.Debug = Paths.IsInLocalMods;
       CUI.ModDir = Paths.ModDir;
       CUI.AssetsPath = Paths.AssetsFolder;
       CUIPalette.DefaultPalette = "Red";
       CUI.HookIdentifier = Name;
+      //CUI.UseCursedPatches = true;
       CUI.Initialize();
 
       SetupCUI();
