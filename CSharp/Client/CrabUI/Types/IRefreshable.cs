@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace CrabUI
+namespace LTCrabUI
 {
   /// <summary>
   /// For stuff that should be in some way refreshed  

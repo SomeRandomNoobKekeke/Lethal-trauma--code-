@@ -13,7 +13,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace CrabUI
+namespace LTCrabUI
 {
   public enum PaletteOrder
   {

@@ -10,7 +10,7 @@ using HarmonyLib;
 using Microsoft.Xna.Framework;
 using LTDependencyInjection;
 #if CLIENT
-using CrabUI;
+using LTCrabUI;
 #endif
 
 using System.Runtime.CompilerServices;

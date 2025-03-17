@@ -14,7 +14,7 @@ using HarmonyLib;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace CrabUI
+namespace LTCrabUI
 {
 
   public class TypeTreeNode

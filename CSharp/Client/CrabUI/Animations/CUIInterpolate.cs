@@ -8,7 +8,7 @@ using System.IO;
 using Barotrauma;
 using Microsoft.Xna.Framework;
 
-namespace CrabUI
+namespace LTCrabUI
 {
   /// <summary>
   /// Class containing a few interpolate functions for CUIAnimation

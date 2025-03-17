@@ -15,7 +15,7 @@ using System.Xml;
 using System.Xml.Linq;
 using HarmonyLib;
 
-namespace CrabUI
+namespace LTCrabUI
 {
   public partial class CUIComponent
   {

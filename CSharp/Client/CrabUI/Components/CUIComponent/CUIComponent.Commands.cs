@@ -16,7 +16,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace CrabUI
+namespace LTCrabUI
 {
 
   public class CommandAttribute : System.Attribute { }
@@ -37,7 +37,8 @@ namespace CrabUI
   {
     private void SetupCommands()
     {
-      AddCommands();
+      // This is actually expensive
+      //AddCommands();
       OnTreeChanged += UpdateDataTargets;
     }
 
