@@ -56,6 +56,7 @@ namespace Lethaltrauma
 
     public void Save()
     {
+
       XDocument xdoc = new XDocument();
       xdoc.Add(new XElement("Config"));
       XElement root = xdoc.Root;
@@ -66,6 +67,7 @@ namespace Lethaltrauma
       }
 
       xdoc.Save(SavePath);
+      Debugger.Log($"Save {SavePath}", DebugLevel.ConfigLoading);
     }
 
     public void Load(string name = null)

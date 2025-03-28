@@ -24,7 +24,7 @@ namespace Lethaltrauma
   public partial class Mod : IAssemblyPlugin
   {
     public static string Name = "Lethaltrauma";
-    public static Harmony Harmony = new Harmony("lethaltrauma");
+    public static Harmony Harmony = new Harmony("Lethaltrauma");
 
     [EntryPoint] public static Mod Instance { get; set; }
     [Singleton] public Debugger Debugger { get; set; }
@@ -52,11 +52,12 @@ namespace Lethaltrauma
       Paths = new ModPaths(Name);
 
 #if CLIENT
-      CUI.Debug = Paths.IsInLocalMods;
+      //CUI.Debug = Paths.IsInLocalMods;
       CUI.ModDir = Paths.ModDir;
       CUI.AssetsPath = Paths.AssetsFolder;
       CUIPalette.DefaultPalette = "Red";
       CUI.HookIdentifier = Name;
+      CUI.UseLua = false;
       //CUI.UseCursedPatches = true;
       CUI.Initialize();
 
@@ -67,7 +68,7 @@ namespace Lethaltrauma
       Services.InjectEverything();
 
       Debugger.Debug = Paths.IsInLocalMods;
-      //Debugger.CurrentLevel = DebugLevel.NetEvents | DebugLevel.ConfigLoading;
+      Debugger.CurrentLevel = DebugLevel.ConfigLoading;
       PatchAll();
 
 
