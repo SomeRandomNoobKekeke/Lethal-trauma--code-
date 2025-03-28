@@ -18,10 +18,7 @@ namespace Lethaltrauma
   {
     public void InitializeProjSpecific()
     {
-      ConfigManager.Load();
-      Mod.Instance.OnDispose += () => ConfigManager.Save();
-      GameMain.LuaCs.Networking.Receive("lt_ask", NetManager.Give);
-      GameMain.LuaCs.Networking.Receive("lt_sync", NetManager.Receive);
+
     }
 
     public void DisposeProjSpecific()

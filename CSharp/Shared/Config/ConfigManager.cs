@@ -105,9 +105,7 @@ namespace Lethaltrauma
       Config = newConfig;
 
       //HACK
-#if SERVER
-      NetManager.Broadcast();
-#else
+#if CLIENT
       if (GameMain.IsMultiplayer && Utils.IHavePermissions) NetManager.Sync();
 #endif
     }

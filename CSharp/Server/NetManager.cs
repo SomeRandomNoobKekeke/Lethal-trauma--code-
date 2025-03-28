@@ -43,6 +43,10 @@ namespace Lethaltrauma
 
       ConfigManager.Decode(inMsg);
 
+      //HACK probably shouldn't be here, but i'm too lazy to search for better place
+      // it's not performance heavy only because lt_sync is debanded on client
+      ConfigManager.Save();
+
       Broadcast();
     }
 

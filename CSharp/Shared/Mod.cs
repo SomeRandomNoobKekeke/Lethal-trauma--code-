@@ -67,12 +67,15 @@ namespace Lethaltrauma
       SetupServices();
       Services.InjectEverything();
 
+
+
       Debugger.Debug = Paths.IsInLocalMods;
-      Debugger.CurrentLevel = DebugLevel.ConfigLoading;
+      //Debugger.CurrentLevel = DebugLevel.NetEvents | DebugLevel.ConfigLoading;
       PatchAll();
 
 
       InitializeProjSpecific();
+      ConfigLoadingStrategy.UseAppropriate();
 
       OnInitialize?.Invoke();
 

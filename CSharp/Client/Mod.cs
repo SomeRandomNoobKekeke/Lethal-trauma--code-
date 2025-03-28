@@ -30,17 +30,7 @@ namespace Lethaltrauma
       CUI.OnPauseMenuToggled += SaveLoadMenuButton.AddSaveLoadButton;
       //SettingsUI.Revealed = true;
 
-      if (GameMain.IsSingleplayer)
-      {
-        Mod.Instance.OnDispose += () => ConfigManager.Save();
-        Mod.Instance.OnInitialize += () => ConfigManager.Load();
-      }
 
-      if (GameMain.IsMultiplayer)
-      {
-        GameMain.LuaCs.Networking.Receive("lt_sync", NetManager.Receive);
-        NetManager.Ask();
-      }
     }
 
     public void DisposeProjSpecific()
