@@ -117,6 +117,8 @@ namespace Lethaltrauma
 #if CLIENT
       CUI.Dispose();
 #endif
+
+      Harmony.UnpatchSelf();
       Instance = null;
     }
   }
