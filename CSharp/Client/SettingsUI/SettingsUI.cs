@@ -120,6 +120,7 @@ namespace Lethaltrauma
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("Explosion Damage", "ExplosionDamage", new FloatRange(0, 5)));
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("Turret Damage", "TurretDamage", new FloatRange(0, 5)));
       Damage.Append(CUIPrefab.TextAndSliderWithLabel("Monster Attack Damage", "MonsterAttackDamage", new FloatRange(0, 5)));
+      Damage.Append(CUIPrefab.TickboxWithLabel("Allow Friendly Fire", "AllowFriendlyFire"));
       this["layout"]["content"]["damage"] = CUIPrefab.WrapInGroup("Damage", Damage);
 
       CUIVerticalList Reaction = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };

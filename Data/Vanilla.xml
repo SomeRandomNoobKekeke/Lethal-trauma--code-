@@ -13,4 +13,5 @@
   <AimAccuracy>0.8</AimAccuracy>
   <NoReputationLossInMask>false</NoReputationLossInMask>
   <PressureKillDelay>5</PressureKillDelay>
+  <AllowFriendlyFire>true</AllowFriendlyFire>
 </Config>

@@ -55,7 +55,10 @@ namespace Lethaltrauma
 
       if (
         attacker != null && attacker != _ &&
-        (Config.AllowFriendlyFire || GameMain.NetworkMember != null && !GameMain.NetworkMember.ServerSettings.AllowFriendlyFire)
+        (
+          !Config.AllowFriendlyFire ||
+          GameMain.NetworkMember != null && !GameMain.NetworkMember.ServerSettings.AllowFriendlyFire
+        )
       )
       {
         if (attacker.TeamID == _.TeamID)
