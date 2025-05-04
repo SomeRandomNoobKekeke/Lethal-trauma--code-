@@ -49,6 +49,7 @@ namespace Lethaltrauma
     public float AimAccuracy { get; set; } = 0.75f;
     public bool NoReputationLossInMask { get; set; } = true;
     public float PressureKillDelay { get; set; } = 1.0f;
+    public bool AllowFriendlyFire { get; set; } = true;
   }
 
   [Singleton]
@@ -216,6 +217,16 @@ namespace Lethaltrauma
       {
         Container.Config.PressureKillDelay = value;
         PressureKillDelayChanged?.Invoke(value);
+        PropChanged?.Invoke();
+      }
+    }
+
+    public bool AllowFriendlyFire
+    {
+      get => Container.Config.AllowFriendlyFire;
+      set
+      {
+        Container.Config.AllowFriendlyFire = value;
         PropChanged?.Invoke();
       }
     }
