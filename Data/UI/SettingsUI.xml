@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SettingsUI Absolute="[1,-1,300,300]" Anchor="[1,0]">
+<SettingsUI Absolute="[0,0,300,300]" Anchor="[1,0]">
   <CUIVerticalList AKA="layout" Relative="[0,0,1,1]">
     <CUITextBlock AKA="header" BackgroundColor="127,0,0,255" Border="[127,0,0,255,1]" Style="{ BackgroundColor : CUIPalette.Frame.Border, Border : CUIPalette.Frame.Border, TextColor : CUIPalette.Frame.Text }" Text="Lethaltrauma Settings" TextAlign="[0.5,0.5]" TextColor="255,229,229,255" TextScale="1" />
     <CUIVerticalList AKA="content" BackgroundColor="25,0,6,255" Border="[51,0,12,255,1]" ConsumeDragAndDrop="true" FillEmptySpace="[False,True]" Gap="10" Palette="Secondary" ResizeHandleColor="152,51,76,255" ResizeHandleGrabbedColor="255,51,102,255" ScrollSpeed="0.5" Scrollable="true" Style="{ BackgroundColor : CUIPalette.Main.Background, Border : CUIPalette.Main.Border, TextColor : CUIPalette.Main.Text }">

@@ -49,8 +49,16 @@ namespace Lethaltrauma
 
     public static void Character_Constructor_Postfix(Character __instance)
     {
-      if (Config == null) return;
-      __instance.CharacterHealth.PressureKillDelay = Config.PressureKillDelay;
+
+      try
+      {
+        if (Config == null || __instance is null) return;
+        __instance.CharacterHealth.PressureKillDelay = Config.PressureKillDelay;
+      }
+      catch (Exception e)
+      {
+        Mod.Log($"Character_Constructor_Postfix threw {e.Message}, Character:[{__instance}]");
+      }
     }
 
 

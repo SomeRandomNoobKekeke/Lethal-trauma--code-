@@ -70,15 +70,22 @@ namespace Lethaltrauma
 
     public static void Character_Constructor_Postfix(Character __instance)
     {
-      if (Config == null || !Config.OverrideHealthMult) return;
+      try
+      {
+        if (Config == null || !Config.OverrideHealthMult || __instance is null) return;
 
-      if (__instance.IsHuman)
-      {
-        __instance.HumanPrefabHealthMultiplier = Config.HumanHealth;
+        if (__instance.IsHuman)
+        {
+          __instance.HumanPrefabHealthMultiplier = Config.HumanHealth;
+        }
+        else
+        {
+          __instance.HumanPrefabHealthMultiplier = Config.MonsterHealth;
+        }
       }
-      else
+      catch (Exception e)
       {
-        __instance.HumanPrefabHealthMultiplier = Config.MonsterHealth;
+        Mod.Log($"Character_Constructor_Postfix threw {e.Message}, Character:[{__instance}]");
       }
     }
   }
