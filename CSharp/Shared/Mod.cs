@@ -105,6 +105,21 @@ namespace Lethaltrauma
       LuaCsLogger.LogMessage($"{msg ?? "null"}", color * 0.8f, color);
     }
 
+    public static void PrintStackTrace()
+    {
+      StackTrace st = new StackTrace(true);
+      for (int i = 0; i < st.FrameCount; i++)
+      {
+        StackFrame sf = st.GetFrame(i);
+        if (sf.GetMethod().DeclaringType is null)
+        {
+          Log($"-> {sf.GetMethod().DeclaringType?.Name}.{sf.GetMethod()}");
+          break;
+        }
+        Log($"-> {sf.GetMethod().DeclaringType?.Name}.{sf.GetMethod()}");
+      }
+    }
+
     public void OnLoadCompleted() { }
     public void PreInitPatching() { }
     public void Dispose()

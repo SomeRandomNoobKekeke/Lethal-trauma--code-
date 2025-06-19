@@ -18,7 +18,7 @@ namespace Lethaltrauma
     public static void Initialize()
     {
       Mod.Harmony.Patch(
-        original: typeof(Character).GetConstructors(AccessTools.all)[1],
+        original: typeof(Character).GetConstructors(AccessTools.all)[0],
         postfix: new HarmonyMethod(typeof(PressureKillDelay).GetMethod("Character_Constructor_Postfix"))
       );
     }
@@ -49,10 +49,9 @@ namespace Lethaltrauma
 
     public static void Character_Constructor_Postfix(Character __instance)
     {
-
       try
       {
-        if (Config == null || __instance is null) return;
+        if (Config == null) return;
         __instance.CharacterHealth.PressureKillDelay = Config.PressureKillDelay;
       }
       catch (Exception e)

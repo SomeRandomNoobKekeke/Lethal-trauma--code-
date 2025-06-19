@@ -62,7 +62,7 @@ namespace Lethaltrauma
     public static void Initialize()
     {
       Mod.Harmony.Patch(
-        original: typeof(Character).GetConstructors(AccessTools.all)[1],
+        original: typeof(Character).GetConstructors(AccessTools.all)[0],
         postfix: new HarmonyMethod(typeof(CharacterHealthInterface).GetMethod("Character_Constructor_Postfix"))
       );
     }
@@ -72,7 +72,7 @@ namespace Lethaltrauma
     {
       try
       {
-        if (Config == null || !Config.OverrideHealthMult || __instance is null) return;
+        if (Config == null || !Config.OverrideHealthMult) return;
 
         if (__instance.IsHuman)
         {
