@@ -94,7 +94,7 @@ namespace Lethaltrauma
       try
       {
         if (Config == null || !Config.OverrideHealthMult) return;
-        SetHealthMilt(__instance);
+        GameMain.LuaCs.Timer.Wait((object[] args) => SetHealthMilt(__instance), 100);
       }
       catch (Exception e)
       {
