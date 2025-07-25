@@ -25,7 +25,8 @@ namespace Lethaltrauma
     public float TurretDamage { get; set; }
     public float MonsterAttackDamage { get; set; }
     public bool OverrideHealthMult { get; set; }
-    public float HumanHealth { get; set; }
+    public float CrewHumanHealth { get; set; }
+    public float EnemyHumanHealth { get; set; }
     public float MonsterHealth { get; set; }
     public bool OverrideAim { get; set; }
     public float AimSpeed { get; set; }
@@ -42,7 +43,8 @@ namespace Lethaltrauma
     public float TurretDamage { get; set; } = 1.0f;
     public float MonsterAttackDamage { get; set; } = 1.0f;
     public bool OverrideHealthMult { get; set; } = true;
-    public float HumanHealth { get; set; } = 1.0f;
+    public float CrewHumanHealth { get; set; } = 1.0f;
+    public float EnemyHumanHealth { get; set; } = 1.0f;
     public float MonsterHealth { get; set; } = 1.0f;
     public bool OverrideAim { get; set; } = true;
     public float AimSpeed { get; set; } = 0.8f;
@@ -61,7 +63,8 @@ namespace Lethaltrauma
 
 
     public event Action<bool> OverrideHealthMultChanged;
-    public event Action<float> HumanHealthChanged;
+    public event Action<float> CrewHumanHealthChanged;
+    public event Action<float> EnemyHumanHealthChanged;
     public event Action<float> MonsterHealthChanged;
     public event Action<bool> OverrideAimChanged;
     public event Action<float> AimSpeedChanged;
@@ -147,13 +150,23 @@ namespace Lethaltrauma
         PropChanged?.Invoke();
       }
     }
-    public float HumanHealth
+    public float CrewHumanHealth
     {
-      get => Container.Config.HumanHealth;
+      get => Container.Config.CrewHumanHealth;
       set
       {
-        Container.Config.HumanHealth = value;
-        HumanHealthChanged?.Invoke(value);
+        Container.Config.CrewHumanHealth = value;
+        CrewHumanHealthChanged?.Invoke(value);
+        PropChanged?.Invoke();
+      }
+    }
+    public float EnemyHumanHealth
+    {
+      get => Container.Config.EnemyHumanHealth;
+      set
+      {
+        Container.Config.EnemyHumanHealth = value;
+        EnemyHumanHealthChanged?.Invoke(value);
         PropChanged?.Invoke();
       }
     }

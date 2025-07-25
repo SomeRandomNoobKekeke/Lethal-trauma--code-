@@ -14,35 +14,55 @@ namespace Lethaltrauma
   [PatchClass]
   public class CharacterHealthInterface
   {
+    /// <summary>
+    /// Probably should be in a separate util class, but i'm a bit lazy
+    /// </summary>
+    public static void SetHealthMilt(Character character)
+    {
+      if (character.IsHuman)
+      {
+        if (character.TeamID == CharacterTeamType.Team1)
+        {
+          character.HumanPrefabHealthMultiplier = Config.CrewHumanHealth;
+        }
+        else
+        {
+          character.HumanPrefabHealthMultiplier = Config.EnemyHumanHealth;
+        }
+      }
+      else
+      {
+        character.HumanPrefabHealthMultiplier = Config.MonsterHealth;
+      }
+    }
+    public static void ResetHealthMilt(Character character)
+    {
+      if (character.humanPrefab != null)
+      {
+        character.HumanPrefabHealthMultiplier = character.humanPrefab.HealthMultiplier;
+        if (GameMain.NetworkMember != null)
+        {
+          character.HumanPrefabHealthMultiplier *= character.humanPrefab.HealthMultiplierInMultiplayer;
+        }
+      }
+      else
+      {
+        character.HumanPrefabHealthMultiplier = 1.0f;
+      }
+    }
+
+
     public static void UpdateHealthMultipliers()
     {
       foreach (Character character in Character.CharacterList)
       {
         if (Config.OverrideHealthMult)
         {
-          if (character.IsHuman)
-          {
-            character.HumanPrefabHealthMultiplier = Config.HumanHealth;
-          }
-          else
-          {
-            character.HumanPrefabHealthMultiplier = Config.MonsterHealth;
-          }
+          SetHealthMilt(character);
         }
         else
         {
-          if (character.humanPrefab != null)
-          {
-            character.HumanPrefabHealthMultiplier = character.humanPrefab.HealthMultiplier;
-            if (GameMain.NetworkMember != null)
-            {
-              character.HumanPrefabHealthMultiplier *= character.humanPrefab.HealthMultiplierInMultiplayer;
-            }
-          }
-          else
-          {
-            character.HumanPrefabHealthMultiplier = 1.0f;
-          }
+          ResetHealthMilt(character);
         }
       }
     }
@@ -55,7 +75,8 @@ namespace Lethaltrauma
     {
       ConfigManager.ConfigChanged += UpdateHealthMultipliers;
       Config.OverrideHealthMultChanged += (v) => UpdateHealthMultipliers();
-      Config.HumanHealthChanged += (v) => UpdateHealthMultipliers();
+      Config.CrewHumanHealthChanged += (v) => UpdateHealthMultipliers();
+      Config.EnemyHumanHealthChanged += (v) => UpdateHealthMultipliers();
       Config.MonsterHealthChanged += (v) => UpdateHealthMultipliers();
     }
 
@@ -73,15 +94,7 @@ namespace Lethaltrauma
       try
       {
         if (Config == null || !Config.OverrideHealthMult) return;
-
-        if (__instance.IsHuman)
-        {
-          __instance.HumanPrefabHealthMultiplier = Config.HumanHealth;
-        }
-        else
-        {
-          __instance.HumanPrefabHealthMultiplier = Config.MonsterHealth;
-        }
+        SetHealthMilt(__instance);
       }
       catch (Exception e)
       {

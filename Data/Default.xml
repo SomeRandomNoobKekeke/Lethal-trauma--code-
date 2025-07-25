@@ -6,7 +6,8 @@
   <TurretDamage>1</TurretDamage>
   <MonsterAttackDamage>1</MonsterAttackDamage>
   <OverrideHealthMult>true</OverrideHealthMult>
-  <HumanHealth>1</HumanHealth>
+  <CrewHumanHealth>1</CrewHumanHealth>
+  <EnemyHumanHealth>1</EnemyHumanHealth>
   <MonsterHealth>1</MonsterHealth>
   <OverrideAim>true</OverrideAim>
   <AimSpeed>0.75</AimSpeed>

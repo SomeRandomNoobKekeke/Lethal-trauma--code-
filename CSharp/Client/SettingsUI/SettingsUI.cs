@@ -132,7 +132,8 @@ namespace Lethaltrauma
 
       CUIVerticalList Health = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
       Health.Append(CUIPrefab.TickboxWithLabel("Override Health Multiplier", "OverrideHealthMult"));
-      Health.Append(CUIPrefab.TextAndSliderWithLabel("Human Health Multiplier", "HumanHealth", new FloatRange(0, 5)));
+      Health.Append(CUIPrefab.TextAndSliderWithLabel("Crew Health Multiplier", "CrewHumanHealth", new FloatRange(0, 5)));
+      Health.Append(CUIPrefab.TextAndSliderWithLabel("Enemy Human Health Multiplier", "EnemyHumanHealth", new FloatRange(0, 5)));
       Health.Append(CUIPrefab.TextAndSliderWithLabel("Monster Health Multiplier", "MonsterHealth", new FloatRange(0, 5)));
       this["layout"]["content"]["health"] = CUIPrefab.WrapInGroup("Health", Health);
 
