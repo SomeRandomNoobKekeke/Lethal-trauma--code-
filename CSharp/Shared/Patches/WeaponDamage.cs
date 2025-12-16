@@ -10,6 +10,18 @@ using Microsoft.Xna.Framework;
 using Barotrauma.Items.Components;
 using LTDependencyInjection;
 
+using Barotrauma.Networking;
+using FarseerPhysics;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
+using FarseerPhysics.Dynamics.Joints;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
+using Voronoi2;
+
 
 namespace Lethaltrauma
 {
