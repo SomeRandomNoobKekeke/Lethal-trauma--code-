@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
-  <RangedWeaponDamage>3</RangedWeaponDamage>
-  <MeleeWeaponDamage>3</MeleeWeaponDamage>
-  <ExplosionDamage>1.5</ExplosionDamage>
+  <RangedWeaponDamage>5</RangedWeaponDamage>
+  <MeleeWeaponDamage>1</MeleeWeaponDamage>
+  <ExplosionDamage>1</ExplosionDamage>
   <TurretDamage>1</TurretDamage>
   <MonsterAttackDamage>1</MonsterAttackDamage>
-  <OverrideHealthMult>true</OverrideHealthMult>
+  <OverrideHealthMult>false</OverrideHealthMult>
   <CrewHumanHealth>1</CrewHumanHealth>
   <EnemyHumanHealth>1</EnemyHumanHealth>
   <MonsterHealth>1</MonsterHealth>
-  <OverrideAim>true</OverrideAim>
+  <OverrideAim>false</OverrideAim>
   <AimSpeed>0.75</AimSpeed>
   <AimAccuracy>0.8</AimAccuracy>
-  <NoReputationLossInMask>true</NoReputationLossInMask>
+  <NoReputationLossInMask>false</NoReputationLossInMask>
   <PressureKillDelay>5</PressureKillDelay>
   <AllowFriendlyFire>true</AllowFriendlyFire>
 </Config>
