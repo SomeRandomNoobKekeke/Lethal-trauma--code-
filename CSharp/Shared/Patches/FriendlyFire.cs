@@ -49,6 +49,8 @@ namespace Lethaltrauma
     {
       Character _ = __instance;
 
+
+
       if (_.Removed) { __result = new AttackResult(); return false; }
 
       _.SetStun(stun);
@@ -110,6 +112,7 @@ namespace Lethaltrauma
       }
       if (attackResult.Damage > 0)
       {
+        Mod.PrintStackTrace();
         _.LastDamage = attackResult;
         if (attacker != null && attacker != _ && !attacker.Removed)
         {

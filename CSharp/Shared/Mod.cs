@@ -111,11 +111,11 @@ namespace Lethaltrauma
       for (int i = 0; i < st.FrameCount; i++)
       {
         StackFrame sf = st.GetFrame(i);
-        if (sf.GetMethod().DeclaringType is null)
-        {
-          Log($"-> {sf.GetMethod().DeclaringType?.Name}.{sf.GetMethod()}");
-          break;
-        }
+        // if (sf.GetMethod().DeclaringType is null)
+        // {
+        //   Log($"-> {sf.GetMethod().DeclaringType?.Name}.{sf.GetMethod()}");
+        //   break;
+        // }
         Log($"-> {sf.GetMethod().DeclaringType?.Name}.{sf.GetMethod()}");
       }
     }
