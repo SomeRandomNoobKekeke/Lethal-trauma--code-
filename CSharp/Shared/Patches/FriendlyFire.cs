@@ -49,6 +49,8 @@ namespace Lethaltrauma
     {
       Character _ = __instance;
 
+
+
       if (_.Removed) { __result = new AttackResult(); return false; }
 
       _.SetStun(stun);
@@ -81,10 +83,18 @@ namespace Lethaltrauma
           mainLimb.body.ApplyLinearImpulse(attackImpulse, hitPos, maxVelocity: NetConfig.MaxPhysicsBodyVelocity);
         }
       }
+
+      if (SharedState.fromRangedWeapon == true)
+      {
+        damageMultiplier = Config.RangedWeaponDamage;
+      }
+
       bool wasDead = _.IsDead;
       Vector2 simPos = hitLimb.SimPosition + ConvertUnits.ToSimUnits(dir);
       AttackResult attackResult = hitLimb.AddDamage(simPos, afflictions, playSound, damageMultiplier: damageMultiplier, penetration: penetration, attacker: attacker);
+
       _.CharacterHealth.ApplyDamage(hitLimb, attackResult, allowStacking, recalculateVitality);
+
       if (shouldImplode)
       {
         // Only used by assistant's True Potential talent. Has to run here in order to properly give kill credit when it activates.
@@ -110,6 +120,7 @@ namespace Lethaltrauma
       }
       if (attackResult.Damage > 0)
       {
+
         _.LastDamage = attackResult;
         if (attacker != null && attacker != _ && !attacker.Removed)
         {
@@ -133,6 +144,7 @@ namespace Lethaltrauma
       }
 #endif
       __result = attackResult; return false;
+
     }
 
 
