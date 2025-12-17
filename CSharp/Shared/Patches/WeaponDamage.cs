@@ -57,7 +57,6 @@ namespace Lethaltrauma
 
     public static bool Character_ApplyAttack_Prefix(Character __instance, ref AttackResult __result, Character attacker, Vector2 worldPosition, Attack attack, float deltaTime, Vector2 impulseDirection, bool playSound = false, Limb targetLimb = null, float penetration = 0f)
     {
-      Logger.Log("Character_ApplyAttack_Prefix");
       if (Config == null) return true;
 
       bool fromTurret = attack.SourceItem?.GetComponent<Projectile>()?.Launcher?.GetComponent<Turret>() != null;

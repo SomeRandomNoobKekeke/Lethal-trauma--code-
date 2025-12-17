@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
-  <RangedWeaponDamage>0.08</RangedWeaponDamage>
+  <RangedWeaponDamage>1</RangedWeaponDamage>
   <MeleeWeaponDamage>1</MeleeWeaponDamage>
   <ExplosionDamage>1</ExplosionDamage>
   <TurretDamage>1</TurretDamage>
