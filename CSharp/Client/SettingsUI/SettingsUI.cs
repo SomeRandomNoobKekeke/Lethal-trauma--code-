@@ -150,7 +150,10 @@ namespace Lethaltrauma
         this.SaveToFile(SavePath);
       }
 
-      this.LoadSelfFromFile(SavePath);
+      if (File.Exists(SavePath))
+      {
+        this.LoadSelfFromFile(SavePath);
+      }
     }
 
 
