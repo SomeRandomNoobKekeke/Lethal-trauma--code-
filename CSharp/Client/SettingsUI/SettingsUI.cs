@@ -141,6 +141,14 @@ namespace Lethaltrauma
 
       this["layout"]["content"]["NoReputationLossInMask"] = CUIPrefab.TickboxWithLabel("No Reputation Loss In Mask", "NoReputationLossInMask");
 
+      CUIVerticalList StructureDamage = new CUIVerticalList() { FitContent = new CUIBool2(false, true) };
+      StructureDamage.Append(CUIPrefab.TextAndSliderWithLabel("Weapon Structure Damage", "WeaponStructureDamage", new FloatRange(0, 10)));
+      StructureDamage.Append(CUIPrefab.TextAndSliderWithLabel("Monster Structure Damage", "MonsterStructureDamage", new FloatRange(0, 10)));
+      this["layout"]["content"]["StructureDamage"] = CUIPrefab.WrapInGroup("Structure Damage", StructureDamage);
+
+
+
+
       this["layout"]["content"].DeepPalette = PaletteOrder.Secondary;
       this["layout"]["content"]["load buttons"].DeepPalette = PaletteOrder.Tertiary;
 

@@ -33,6 +33,8 @@ namespace Lethaltrauma
     public float AimAccuracy { get; set; }
     public bool NoReputationLossInMask { get; set; }
     public float PressureKillDelay { get; set; }
+    public float WeaponStructureDamage { get; set; }
+    public float MonsterStructureDamage { get; set; }
   }
 
   public class Config : IConfig
@@ -52,6 +54,8 @@ namespace Lethaltrauma
     public bool NoReputationLossInMask { get; set; } = true;
     public float PressureKillDelay { get; set; } = 1.0f;
     public bool AllowFriendlyFire { get; set; } = true;
+    public float WeaponStructureDamage { get; set; } = 1.0f;
+    public float MonsterStructureDamage { get; set; } = 1.0f;
   }
 
   [Singleton]
@@ -240,6 +244,26 @@ namespace Lethaltrauma
       set
       {
         Container.Config.AllowFriendlyFire = value;
+        PropChanged?.Invoke();
+      }
+    }
+
+    public float WeaponStructureDamage
+    {
+      get => Container.Config.WeaponStructureDamage;
+      set
+      {
+        Container.Config.WeaponStructureDamage = value;
+        PropChanged?.Invoke();
+      }
+    }
+
+    public float MonsterStructureDamage
+    {
+      get => Container.Config.MonsterStructureDamage;
+      set
+      {
+        Container.Config.MonsterStructureDamage = value;
         PropChanged?.Invoke();
       }
     }

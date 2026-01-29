@@ -15,4 +15,6 @@
   <NoReputationLossInMask>true</NoReputationLossInMask>
   <PressureKillDelay>5</PressureKillDelay>
   <AllowFriendlyFire>true</AllowFriendlyFire>
+  <WeaponStructureDamage>1</WeaponStructureDamage>
+  <MonsterStructureDamage>10</MonsterStructureDamage>
 </Config>

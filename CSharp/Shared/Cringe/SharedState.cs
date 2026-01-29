@@ -16,5 +16,7 @@ namespace Lethaltrauma
   public class SharedState
   {
     public static bool? fromRangedWeapon;
+
+    public static bool FromLimbUpdateAttack;
   }
 }
