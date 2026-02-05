@@ -91,11 +91,13 @@ namespace Lethaltrauma
 
     public static void Item_AddDamage_Prefix(Item __instance, ref AttackResult __result, Character attacker, Vector2 worldPosition, Attack attack, Vector2 impulseDirection, float deltaTime, bool playSound = true)
     {
+      if (attacker is null) return;
+
       bool isDoor = __instance.GetComponent<Door>() != null;
 
       if (isDoor)
       {
-        if (attacker is not null && attacker.IsHuman)
+        if (attacker.IsHuman)
         {
           attack.DamageMultiplier = Config.WeaponStructureDamage;
         }
