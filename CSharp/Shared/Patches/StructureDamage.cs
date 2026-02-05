@@ -95,7 +95,7 @@ namespace Lethaltrauma
 
       if (isDoor)
       {
-        if (attacker.IsHuman)
+        if (attacker is not null && attacker.IsHuman)
         {
           attack.DamageMultiplier = Config.WeaponStructureDamage;
         }
